@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0CC18D"
+    android:background="@drawable/background"
+    android:backgroundTintMode="add"
     tools:context=".Login">
 
     <LinearLayout
@@ -16,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <EditText
             android:id="@+id/user_name"
             android:layout_width="match_parent"
@@ -24,10 +26,14 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/text_view_theme"
+            android:drawableStart="@drawable/ic_baseline"
             android:ems="10"
-            android:hint="   username"
+            android:hint="username"
             android:inputType="textEmailAddress"
+            android:paddingStart="20dp"
+            android:drawablePadding="12dp"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <EditText
@@ -38,10 +44,13 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/text_view_theme"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
             android:ems="10"
-            android:hint="   password"
+            android:hint="password"
             android:inputType="textPassword"
+            android:paddingStart="20dp"
+            android:drawablePadding="12dp"
             android:textSize="24sp" />
 
         <Button
@@ -52,9 +61,9 @@
             android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
-            android:background="#DAD4D4"
+            android:background="@drawable/log_button"
             android:text="login"
-            android:textColor="@color/color1"
+            android:textColor="@android:color/background_dark"
             android:textSize="22sp" />
 
         <LinearLayout
@@ -75,12 +84,12 @@
                 android:id="@+id/sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/color1"
+                android:background="#00FFFFFF"
                 android:paddingLeft="5dp"
                 android:text="Sign up Now"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@android:color/background_light"
                 android:textSize="20sp" />
 
         </LinearLayout>
