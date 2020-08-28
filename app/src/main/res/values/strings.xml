@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Emergency App</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string-array name="Gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="wilaya_entries">
+        <item>23-Annaba</item>
+        <item>41-Souk-Ahras</item>
+    </string-array>
 </resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rescue Agent Informations :"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/wilaya"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/text_view_theme"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="year of birth"
+        android:inputType="number"
+        android:paddingStart="20dp"
+        android:textColor="#000000"
+        android:textSize="24sp"/>
+
+    <Spinner
+        android:id="@+id/dayra"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/text_view_theme"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="year of birth"
+        android:inputType="number"
+        android:paddingStart="20dp"
+        android:textColor="#000000"
+        android:textSize="24sp"/>
+
+    <Spinner
+        android:id="@+id/rescue_type"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/text_view_theme"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="year of birth"
+        android:inputType="number"
+        android:paddingStart="20dp"
+        android:textColor="#000000"
+        android:textSize="24sp"/>
+</LinearLayout>

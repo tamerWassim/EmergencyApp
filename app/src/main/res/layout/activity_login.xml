@@ -27,12 +27,12 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/text_view_theme"
-            android:drawableStart="@drawable/ic_baseline"
+            android:drawableStart="@drawable/phone"
+            android:drawablePadding="12dp"
             android:ems="10"
-            android:hint="username"
+            android:hint="phone number"
             android:inputType="textEmailAddress"
             android:paddingStart="20dp"
-            android:drawablePadding="12dp"
             android:textColor="#000000"
             android:textSize="24sp" />
 

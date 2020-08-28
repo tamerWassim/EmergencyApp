@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
                 String username = userName.getText().toString();
                 String pWord = password.getText().toString();
 
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 intent.putExtra("un", username);
                 intent.putExtra("pw", pWord);
                 startActivity(intent);

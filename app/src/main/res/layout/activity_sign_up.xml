@@ -4,205 +4,162 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     android:backgroundTintMode="add"
     tools:context=".SignUp">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="50dp"
             android:orientation="vertical">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:paddingTop="50dp">
+
 
                 <EditText
                     android:id="@+id/first_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
                     android:background="@drawable/text_view_theme"
                     android:drawablePadding="12dp"
                     android:ems="10"
                     android:hint="first name"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="20dp"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+
+                <EditText
+                    android:id="@+id/last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/text_view_theme"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="last name"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="20dp"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+                <Spinner
+                    android:id="@+id/gender_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/text_view_theme"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:inputType="phone"
+                    android:paddingStart="20dp"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:entries="@array/Gender"/>
+
+                <EditText
+                    android:id="@+id/phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/text_view_theme"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="phone number"
+                    android:inputType="phone"
                     android:paddingStart="20dp"
                     android:textColor="#000000"
                     android:textSize="24sp" />
 
                 <EditText
-                    android:id="@+id/last_name"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/pass_word"
+                    android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
                     android:background="@drawable/text_view_theme"
+                    android:drawableStart="@drawable/ic_baseline_lock_24"
                     android:drawablePadding="12dp"
                     android:ems="10"
-                    android:hint="last name"
+                    android:hint="password"
+                    android:inputType="textPassword"
                     android:paddingStart="20dp"
                     android:textColor="#000000"
                     android:textSize="24sp" />
+
             </LinearLayout>
 
-            <LinearLayout
+            <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="3">
+                android:weightSum="2"
+                android:padding="20dp">
+                <RadioButton
+                    android:id="@+id/protected_member"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Protected Member"
+                    android:layout_weight="1" />
 
-                <NumberPicker
-                    android:id="@+id/day"
-                    android:layout_width="10dp"
-                    android:layout_height="75dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/text_view_theme"
-                    android:drawablePadding="12dp"
-                    android:ems="10"
-                    android:paddingStart="20dp"
-                    android:textColor="#000000"
-                    android:textSize="50sp"
-                    />
+                <RadioButton
+                    android:id="@+id/rescue_agent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rescue Agent"
+                    android:layout_weight="1"/>
+            </RadioGroup>
 
-                <NumberPicker
-                    android:id="@+id/month"
-                    android:layout_width="10dp"
-                    android:layout_height="75dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/text_view_theme"
-                    android:drawablePadding="12dp"
-                    android:ems="10"
-                    android:paddingStart="20dp"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    />
+            <LinearLayout
+                android:id="@+id/more_informations"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-                <NumberPicker
-                    android:layout_width="10dp"
-                    android:id="@+id/year"
-                    android:layout_marginRight="20dp"
-                    android:layout_height="75dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/text_view_theme"
-                    android:drawablePadding="12dp"
-                    android:ems="10"
-                    android:paddingStart="20dp"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:layout_weight="1"
-                    />
             </LinearLayout>
 
-
-            <EditText
-                android:id="@+id/adress"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/text_view_theme"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="adress"
-                android:inputType="textEmailAddress"
-                android:paddingStart="20dp"
-                android:textColor="#000000"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/phone_number"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/text_view_theme"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="phone number"
-                android:inputType="phone"
-                android:paddingStart="20dp"
-                android:textColor="#000000"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/Email"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/text_view_theme"
-                android:drawableStart="@drawable/ic_baseline"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="E-Mail"
-                android:inputType="textEmailAddress"
-                android:paddingStart="20dp"
-                android:textColor="#000000"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/pass_word"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/text_view_theme"
-                android:drawableStart="@drawable/ic_baseline_lock_24"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="password"
-                android:inputType="textPassword"
-                android:paddingStart="20dp"
-                android:textColor="#000000"
-                android:textSize="24sp" />
             <Button
                 android:id="@+id/sign"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/log_button"
                 android:text="Sign Up"
                 android:textColor="@android:color/background_dark"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                tools:layout_editor_absoluteY="512dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"/>
+
 
         </LinearLayout>
     </ScrollView>
