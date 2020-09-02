@@ -12,65 +12,6 @@
         android:textColor="#000000"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/adress"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/text_view_theme"
-        android:drawablePadding="12dp"
-        android:ems="10"
-        android:hint="adress"
-        android:inputType="text"
-        android:paddingStart="20dp"
-        android:textColor="#000000"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/pathologies"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/text_view_theme"
-        android:drawablePadding="12dp"
-        android:ems="10"
-        android:hint="Enter your pathologies"
-        android:inputType="textMultiLine"
-        android:paddingStart="20dp"
-        android:textColor="#000000"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/year_of_birth"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/text_view_theme"
-        android:drawablePadding="12dp"
-        android:ems="10"
-        android:hint="year of birth"
-        android:inputType="number"
-        android:paddingStart="20dp"
-        android:textColor="#000000"
-        android:textSize="24sp" />
-
-    <Spinner
-        android:id="@+id/blood_group_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/text_view_theme"
-        android:drawablePadding="12dp"
-        android:ems="10"
-        android:hint="year of birth"
-        android:inputType="number"
-        android:paddingStart="20dp"
-        android:textColor="#000000"
-        android:textSize="24sp"/>
 
 
 </LinearLayout>

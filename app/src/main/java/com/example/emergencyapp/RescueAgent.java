@@ -1,35 +1,17 @@
 package com.example.emergencyapp;
 
-public class RescueAgent {
-    String firstName, lastName, wilaya, dayra, phoneNumber;
-    String password;
+public class RescueAgent extends ProtectedMember {
+
+    String wilaya, dayra;
     RescueTypes rescueType;
     boolean disponible;
 
-    public RescueAgent(String firstName, String lastName, String wilaya, String dayra, String phoneNumber, String password, RescueTypes rescueType) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public RescueAgent(String firstName, String lastName, String gender, String adress, int yearOfBirth, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup,
+                       String wilaya, String dayra, RescueTypes rescueType) {
+        super(firstName, lastName, gender, adress, yearOfBirth, phoneNumber, email, password, pathologies, bloodGroup);
         this.wilaya = wilaya;
         this.dayra = dayra;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
         this.rescueType = rescueType;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getWilaya() {
@@ -48,14 +30,6 @@ public class RescueAgent {
         this.dayra = dayra;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public RescueTypes getRescueType() {
         return rescueType;
     }
@@ -72,12 +46,24 @@ public class RescueAgent {
         this.disponible = disponible;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public String toString() {
+        return "RescueAgent{" +
+                "wilaya='" + wilaya + '\'' +
+                ", dayra='" + dayra + '\'' +
+                ", rescueType=" + rescueType +
+                ", disponible=" + disponible +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", adress='" + adress + '\'' +
+                ", pathologies='" + pathologies + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", yearOfBith=" + yearOfBith +
+                ", bloodGroup=" + bloodGroup +
+                '}';
     }
 }
 

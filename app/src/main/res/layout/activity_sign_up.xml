@@ -37,6 +37,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/text_view_theme"
+                    android:drawableStart="@drawable/gender"
                     android:drawablePadding="12dp"
                     android:ems="10"
                     android:hint="first name"
@@ -55,6 +56,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/text_view_theme"
+                    android:drawableStart="@drawable/gender"
                     android:drawablePadding="12dp"
                     android:ems="10"
                     android:hint="last name"
@@ -76,6 +78,7 @@
                     android:ems="10"
                     android:inputType="phone"
                     android:paddingStart="20dp"
+                    android:drawableStart="@drawable/gender"
                     android:textColor="#000000"
                     android:textSize="24sp"
                     android:entries="@array/Gender"/>
@@ -89,10 +92,30 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/text_view_theme"
+                    android:drawableStart="@drawable/phone"
                     android:drawablePadding="12dp"
                     android:ems="10"
                     android:hint="phone number"
                     android:inputType="phone"
+                    android:paddingStart="20dp"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+
+                <EditText
+                    android:id="@+id/Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/text_view_theme"
+                    android:drawableStart="@drawable/ic_baseline"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
                     android:paddingStart="20dp"
                     android:textColor="#000000"
                     android:textSize="24sp" />
@@ -115,28 +138,93 @@
                     android:textColor="#000000"
                     android:textSize="24sp" />
 
-            </LinearLayout>
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:padding="20dp">
-                <RadioButton
-                    android:id="@+id/protected_member"
+                <EditText
+                    android:id="@+id/adress"
+                    android:hint="adress"
+                    android:inputType="text"
+                    android:paddingStart="20dp"
+                    android:textColor="#000000"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Protected Member"
-                    android:layout_weight="1" />
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/text_view_theme"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:textSize="24sp"/>
 
-                <RadioButton
+                <EditText
+                    android:id="@+id/pathologies"
+
+                    android:ems="10"
+                    android:hint="Enter your pathologies"
+                    android:inputType="textMultiLine"
+                    android:paddingStart="20dp"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/text_view_theme"
+                    android:drawablePadding="12dp"
+                    />
+
+                <EditText
+                    android:id="@+id/year_of_birth"
+
+                    android:background="@drawable/text_view_theme"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="year of birth"
+                    android:inputType="number"
+                    android:paddingStart="20dp"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/blood_group_spinner"
+                    android:background="@drawable/text_view_theme"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="year of birth"
+                    android:inputType="number"
+                    android:paddingStart="20dp"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                  />
+
+                <CheckBox
                     android:id="@+id/rescue_agent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rescue Agent"
-                    android:layout_weight="1"/>
-            </RadioGroup>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:drawableStart="@drawable/agent"
+                    android:layout_gravity="center"
+                    android:text=" Velonteer as a Rescue Agent"
+                    android:textSize="24sp"/>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/more_informations"
@@ -151,14 +239,21 @@
                 android:id="@+id/sign"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/log_button"
+                android:drawableStart="@drawable/ic_baseline_check_24"
                 android:text="Sign Up"
                 android:textColor="@android:color/background_dark"
                 android:textSize="22sp"
-                tools:layout_editor_absoluteY="512dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"/>
+                tools:layout_editor_absoluteY="512dp" />
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>

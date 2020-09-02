@@ -1,6 +1,18 @@
 <resources>
     <string name="app_name">Emergency App</string>
     <string name="title_activity_maps">Map</string>
+    <string name="input_error_firstName">name required</string>
+    <string name="input_error_lastName">last name required</string>
+    <string name="input_error_email">email required</string>
+    <string name="input_error_password">password required</string>
+    <string name="input_error_phone">phone required</string>
+    <string name="input_error_password_length">password should be at least 6 characters long</string>
+    <string name="input_error_phone_invalid">enter a valid phone number</string>
+    <string name="registration_success">Registered Successfully</string>
+    <string name="input_error_email_invalid">enter a valid email</string>
+    <string name="input_adress_error">enter a correct adress</string>
+
+
 
     <string-array name="Gender">
         <item>Male</item>
@@ -8,7 +20,7 @@
     </string-array>
 
     <string-array name="wilaya_entries">
-        <item>23-Annaba</item>
-        <item>41-Souk-Ahras</item>
+
     </string-array>
+
 </resources>

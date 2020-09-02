@@ -21,7 +21,6 @@
         android:drawablePadding="12dp"
         android:ems="10"
         android:hint="year of birth"
-        android:inputType="number"
         android:paddingStart="20dp"
         android:textColor="#000000"
         android:textSize="24sp"/>
@@ -36,7 +35,6 @@
         android:drawablePadding="12dp"
         android:ems="10"
         android:hint="year of birth"
-        android:inputType="number"
         android:paddingStart="20dp"
         android:textColor="#000000"
         android:textSize="24sp"/>
@@ -51,7 +49,6 @@
         android:drawablePadding="12dp"
         android:ems="10"
         android:hint="year of birth"
-        android:inputType="number"
         android:paddingStart="20dp"
         android:textColor="#000000"
         android:textSize="24sp"/>
