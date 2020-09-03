@@ -6,9 +6,9 @@ public class RescueAgent extends ProtectedMember {
     RescueTypes rescueType;
     boolean disponible;
 
-    public RescueAgent(String firstName, String lastName, String gender, String adress, int yearOfBirth, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup,
+    public RescueAgent(String firstName, String lastName, String gender, String adress, int age, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup,
                        String wilaya, String dayra, RescueTypes rescueType) {
-        super(firstName, lastName, gender, adress, yearOfBirth, phoneNumber, email, password, pathologies, bloodGroup);
+        super(firstName, lastName, gender, adress, age, phoneNumber, email, password, pathologies, bloodGroup);
         this.wilaya = wilaya;
         this.dayra = dayra;
         this.rescueType = rescueType;
@@ -61,7 +61,7 @@ public class RescueAgent extends ProtectedMember {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                ", yearOfBith=" + yearOfBith +
+                ", age=" + age +
                 ", bloodGroup=" + bloodGroup +
                 '}';
     }

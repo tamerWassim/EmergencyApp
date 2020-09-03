@@ -51,7 +51,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     //mutual fields
     EditText firstName, lastName, phoneNumber, password, Email;
     Spinner genderSpinner;
-    EditText adress, pathologies, yearOfBirth;
+    EditText adress, pathologies, age;
     Spinner bloodGroupSpinner;
 
     //protected member fields
@@ -83,7 +83,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         genderSpinner = findViewById(R.id.gender_spinner);
         adress = findViewById(R.id.adress);
         pathologies = findViewById(R.id.pathologies);
-        yearOfBirth = findViewById(R.id.year_of_birth);
+        age = findViewById(R.id.age);
         bloodGroupSpinner = findViewById(R.id.blood_group_spinner);
         fillBloodGroupSpiner();
 
@@ -132,6 +132,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
 
     private void createNewMember() {
+
         if (firstName.getText().toString().trim().isEmpty()) {
             firstName.setError(getString(R.string.input_error_firstName));
             firstName.requestFocus();
@@ -148,7 +149,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             phoneNumber.requestFocus();
             return;
         }
-
         if (phoneNumber.getText().toString().trim().length() != 10) {
             phoneNumber.setError(getString(R.string.input_error_phone_invalid));
             phoneNumber.requestFocus();
@@ -179,6 +179,29 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             adress.requestFocus();
             return;
         }
+
+        if (age.getText().toString().trim().isEmpty()) {
+            age.setError("enter your Age");
+            age.requestFocus();
+            return;
+        }
+        if (Integer.parseInt(age.getText().toString())>110) {
+            age.setError("are you + 110 years old !!!");
+            age.requestFocus();
+            return;
+        }
+        if (Integer.parseInt(age.getText().toString()) <12) {
+            age.setError("you stil kid !");
+            age.requestFocus();
+            return;
+        }
+        if (pathologies.getText().toString().trim().isEmpty()) {
+            pathologies.setError("if you don't have pathologies inter NONE ");
+            pathologies.requestFocus();
+            return;
+        }
+
+
 
         final BloodGroups blood;
         switch (String.valueOf(bloodGroupSpinner.getSelectedItem())) {
@@ -221,7 +244,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                         lastName.getText() + "",
                                         genderSpinner.getSelectedItem() + "",
                                         adress.getText() + "",
-                                        Integer.parseInt(yearOfBirth.getText() + ""),
+                                        Integer.parseInt(age.getText()+"") ,
                                         Integer.parseInt(phoneNumber.getText() + ""),
                                         Email.getText() + "",
                                         password.getText() + "",
@@ -297,7 +320,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                         lastName.getText() + "",
                                         genderSpinner.getSelectedItem() + "",
                                         adress.getText() + "",
-                                        Integer.parseInt(yearOfBirth.getText() + ""),
+                                        Integer.parseInt(age.getText() + ""),
                                         Integer.parseInt(phoneNumber.getText() + ""),
                                         Email.getText() + "",
                                         password.getText() + "",

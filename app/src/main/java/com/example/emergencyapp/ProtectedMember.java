@@ -9,14 +9,14 @@ public class ProtectedMember {
     String email ;
     String password;
     int phoneNumber;
-    int yearOfBith;
+    int age;
     BloodGroups bloodGroup;
 
-    public ProtectedMember(String firstName, String lastName, String gender, String adress, int yearOfBirth, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup) {
+    public ProtectedMember(String firstName, String lastName, String gender, String adress, int age, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
-        this.yearOfBith = yearOfBirth;
+        this.age = age;
         this.adress = adress;
         this.phoneNumber = phoneNumber;
         this.email=email;
@@ -97,13 +97,14 @@ public class ProtectedMember {
         this.password = password;
     }
 
-    public int getYearOfBith() {
-        return yearOfBith;
+    public int getAge() {
+        return age;
     }
 
-    public void setYearOfBith(int yearOfBith) {
-        this.yearOfBith = yearOfBith;
+    public void setAge(int age) {
+        this.age = age;
     }
+
 
 
     @Override
@@ -117,7 +118,7 @@ public class ProtectedMember {
                 ", phoneNumber=" + phoneNumber +
                 ", pathologies='" + pathologies + '\'' +
                 ", password='" + password + '\'' +
-                ", yearOfBith=" + yearOfBith +
+                ", age=" + age +
                 ", bloodGroup=" + bloodGroup +
                 '}';
     }
