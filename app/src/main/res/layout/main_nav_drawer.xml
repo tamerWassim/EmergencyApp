@@ -11,6 +11,11 @@
         android:background="@color/menu"
         android:onClick="Clicklogo"
         android:src="@drawable/logo" />
+
+
+
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,13 +24,10 @@
         android:textStyle="bold"
         android:textSize="20sp"
         android:textAlignment="center"
-        android:textColor="#FBFBFB"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:background="@color/menu"/>
+        android:textColor="@color/white"/>
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,6 +52,14 @@
 
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="35dp"
+        android:background="@color/menu"/>
 
 
     <LinearLayout
@@ -74,6 +84,14 @@
 
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="35dp"
+        android:background="@color/menu"/>
 
 
 
@@ -102,6 +120,14 @@
 
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="35dp"
+        android:background="@color/menu"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -128,6 +154,14 @@
 
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="35dp"
+        android:background="@color/menu"/>
 
 
 

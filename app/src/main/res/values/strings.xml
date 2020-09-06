@@ -18,16 +18,6 @@
         <item>Female</item>
     </string-array>
 
-    <string-array name="wilaya_entries">
-        <item>souk ahras</item>
-        <item>annaba</item>
-    </string-array>
-
-    <string-array name="dayra_entries">
-        <item>souk ahras</item>
-        <item>merahna</item>
-    </string-array>
-
     <string-array name="emergency_type_entries">
         <item>incendie</item>
         <item>accident</item>

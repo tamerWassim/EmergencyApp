@@ -5,13 +5,16 @@ public class RescueAgent extends ProtectedMember {
     String wilaya, dayra;
     RescueTypes rescueType;
     boolean disponible;
+    int id ;
 
-    public RescueAgent(String firstName, String lastName, String gender, String adress, int age, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup,
+    public RescueAgent(String firstName, String lastName, String gender, String adress, int Age, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup,
                        String wilaya, String dayra, RescueTypes rescueType) {
-        super(firstName, lastName, gender, adress, age, phoneNumber, email, password, pathologies, bloodGroup);
+        super(firstName, lastName, gender, adress, Age, phoneNumber, email, password, pathologies, bloodGroup);
         this.wilaya = wilaya;
         this.dayra = dayra;
         this.rescueType = rescueType;
+        id = 2;
+
     }
 
     public String getWilaya() {
@@ -46,6 +49,14 @@ public class RescueAgent extends ProtectedMember {
         this.disponible = disponible;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "RescueAgent{" +
@@ -61,7 +72,7 @@ public class RescueAgent extends ProtectedMember {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                ", age=" + age +
+                ", age=" + Age +
                 ", bloodGroup=" + bloodGroup +
                 '}';
     }

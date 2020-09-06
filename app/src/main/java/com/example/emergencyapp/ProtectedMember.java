@@ -9,20 +9,22 @@ public class ProtectedMember {
     String email ;
     String password;
     int phoneNumber;
-    int age;
+    int Age;
+    int id ;
     BloodGroups bloodGroup;
 
-    public ProtectedMember(String firstName, String lastName, String gender, String adress, int age, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup) {
+    public ProtectedMember( String firstName, String lastName, String gender, String adress, int Age, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
-        this.age = age;
+        this.Age = Age;
         this.adress = adress;
         this.phoneNumber = phoneNumber;
         this.email=email;
         this.password = password;
         this.pathologies = pathologies;
         this.bloodGroup = bloodGroup;
+        id = 1;
     }
 
     public String getEmail() {
@@ -98,14 +100,20 @@ public class ProtectedMember {
     }
 
     public int getAge() {
-        return age;
+        return Age;
     }
 
     public void setAge(int age) {
-        this.age = age;
+        this.Age = age;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public String toString() {
@@ -118,7 +126,7 @@ public class ProtectedMember {
                 ", phoneNumber=" + phoneNumber +
                 ", pathologies='" + pathologies + '\'' +
                 ", password='" + password + '\'' +
-                ", age=" + age +
+                ", age=" + Age +
                 ", bloodGroup=" + bloodGroup +
                 '}';
     }

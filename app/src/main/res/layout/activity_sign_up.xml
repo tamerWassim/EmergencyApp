@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/menu"
-            android:text="LOGIN"
+            android:text="SIGN UP"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="#FBFBFB"
@@ -37,6 +37,23 @@
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:background="@color/menu"/>
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/back_to_login"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:gravity="center"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/text_view_theme"
+            android:text="Back To Login"
+            android:textColor="@color/menu"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:paddingStart="50dp"
+            android:layout_marginBottom="20dp"
+            android:paddingEnd="50dp"
+            android:drawableStart="@drawable/ic_back_to_login"
+            />
 
         <ScrollView
             android:id="@+id/scrollView2"
@@ -77,6 +94,7 @@
                         android:hint="first name"
                         android:inputType="textEmailAddress"
                         android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
                         android:textColor="#000000"
                         android:textSize="24sp" />
 
@@ -94,6 +112,7 @@
                         android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="last name"
+                        android:paddingEnd="20dp"
                         android:inputType="textEmailAddress"
                         android:paddingStart="20dp"
                         android:textColor="#000000"
@@ -124,6 +143,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="20dp"
+                        android:paddingEnd="20dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/text_view_theme"
                         android:drawableStart="@drawable/phone"
@@ -141,6 +161,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_marginLeft="20dp"
+                        android:paddingEnd="20dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="5dp"
@@ -160,6 +181,7 @@
                         android:layout_height="60dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
+                        android:paddingEnd="20dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/text_view_theme"
@@ -183,6 +205,7 @@
                         android:background="@drawable/text_view_theme"
                         android:drawableStart="@drawable/ic_adresse"
                         android:drawablePadding="12dp"
+                        android:paddingEnd="20dp"
                         android:ems="10"
                         android:hint="adress"
 
@@ -193,7 +216,6 @@
 
                     <EditText
                         android:id="@+id/pathologies"
-
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_marginLeft="20dp"
@@ -201,16 +223,18 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/text_view_theme"
+                        android:paddingEnd="20dp"
                         android:drawablePadding="12dp"
                         android:ems="10"
                         android:hint="Enter your pathologies"
                         android:inputType="textMultiLine"
+                        android:drawableStart="@drawable/ic_pathologies_icon"
                         android:paddingStart="20dp"
                         android:textColor="#000000"
                         android:textSize="24sp" />
 
                     <EditText
-                        android:id="@+id/age"
+                        android:id="@+id/yearOfBirth"
 
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
@@ -221,9 +245,11 @@
                         android:background="@drawable/text_view_theme"
                         android:drawablePadding="12dp"
                         android:ems="10"
-                        android:hint="your age"
+                        android:hint="year of birth"
+                        android:drawableStart="@drawable/ic_year_of_birth"
                         android:inputType="number"
                         android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
                         android:textColor="#000000"
                         android:textSize="24sp" />
 
@@ -238,7 +264,6 @@
                         android:background="@drawable/text_view_theme"
                         android:drawablePadding="12dp"
                         android:ems="10"
-                        android:hint="year of birth"
                         android:inputType="number"
                         android:paddingStart="20dp"
                         android:textColor="#000000"
@@ -254,7 +279,7 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="5dp"
                         android:drawableStart="@drawable/agent"
-                        android:text=" Velonteer as a Rescue Agent"
+                        android:text=" Velonteer(Rescue Agent)"
                         android:textSize="24sp" />
                 </LinearLayout>
 
@@ -280,9 +305,17 @@
                     android:drawableStart="@drawable/ic_signup"
                     android:drawablePadding="-140dp"
                     android:paddingStart="100dp"
-                    android:text="Signup"
+                    android:text="Sign Up"
                     android:textColor="@android:color/background_dark"
                     android:textSize="22sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/menu"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

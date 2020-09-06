@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape>
+    <item android:state_pressed="false" android:drawable="@drawable/ic_button_sos_1">
 
-            <size android:width="150dp" android:height="150dp"/>
-            <solid android:color="#FF3F3F"/>
-            <stroke android:color="@android:color/black" android:width="2dp"/>
-            <corners android:radius="100dp"/>
-
-
-        </shape>
     </item>
+    <item android:state_pressed="true" android:drawable="@drawable/ic_button_sos_3">
 
+    </item>
 </selector>

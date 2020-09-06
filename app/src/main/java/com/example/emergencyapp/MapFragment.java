@@ -33,22 +33,24 @@ import java.util.Locale;
 
 public class MapFragment extends AppCompatActivity implements OnMapReadyCallback {
 
-     EditText textview1 ;
+   TextView textview;
     private LocationManager locationManager;
    // private String longiLocation, latutLocation;
     double latitude,longitude;
+    String countryName;
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
     FusedLocationProviderClient fusedLocationProviderClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_map_fragment);
+         textview  =findViewById(R.id.location_info);
 
-         textview1 =findViewById(R.id.editTextTextMultiLine);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         // Retrieve the content view that renders the map.
-        setContentView(R.layout.activity_map_fragment);
+
         // Get the SupportMapFragment and request notification
         // when the map is ready to be used.
         final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -57,6 +59,8 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
 
         mapFragment.getMapAsync(this);
         getLocation();
+
+
 
 
     }
@@ -81,6 +85,14 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
                                 " "+addresses.get(0).getAdminArea(), Toast.LENGTH_LONG).show();
                         latitude=addresses.get(0).getLatitude();
                         longitude=addresses.get(0).getLongitude();
+                        countryName = addresses.get(0).getCountryName()+"  " +addresses.get(0).getAdminArea();
+
+                        textview.setText(addresses.get(0).getCountryName() +"  " +
+                                " "+addresses.get(0).getLocality()+"" +
+                                "  "+ addresses.get(0).getAddressLine(0)+" " +
+                                " "+addresses.get(0).getLatitude()+" " +
+                                "  "+addresses.get(0).getLongitude()+
+                                "   "+addresses.get(0).getAdminArea());
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -88,16 +100,18 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
                 }
             }
         });
+
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         LatLng position = new LatLng(latitude,longitude);
         MarkerOptions options = new MarkerOptions();
         options.position(position);
-        googleMap.addMarker(options);
+        googleMap.addMarker(options).setTitle("I'here");
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(position));
+        //googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        googleMap.setMinZoomPreference(4);
+        googleMap.setMinZoomPreference(5);
 
     }
 

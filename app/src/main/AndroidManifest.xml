@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/the_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".profile"></activity>
+        <activity android:name=".Help"></activity>
+        <activity android:name=".profile" />
         <activity android:name=".Menu" />
         <activity android:name=".MapFragment" />
         <!--
@@ -36,6 +37,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
+
 
         <activity android:name=".MainActivity" />
         <activity android:name=".SignUp" />

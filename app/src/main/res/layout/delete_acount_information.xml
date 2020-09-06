@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp">
+
+
+
+        <EditText
+            android:id="@+id/delete_user_email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/text_view_theme"
+            android:drawableStart="@drawable/ic_baseline"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="20dp"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+
+
+
+
+        <EditText
+            android:id="@+id/delete_user_password"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/text_view_theme"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:paddingStart="20dp"
+            android:textSize="24sp" />
+    <CheckBox
+        android:id="@+id/rescue_agent_delete_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:drawableStart="@drawable/agent"
+        android:text=" are youa Rescue Agent !"
+        android:textSize="24sp" />
+
+
+
+
+
+    <Button
+        android:id="@+id/delete_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="Delete"
+        android:background="@drawable/text_view_theme"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#FF0000"
+        android:textSize="24sp" />
+
+
+</LinearLayout>

@@ -51,7 +51,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     //mutual fields
     EditText firstName, lastName, phoneNumber, password, Email;
     Spinner genderSpinner;
-    EditText adress, pathologies, age;
+    EditText adress, pathologies, yearOfbirth;
     Spinner bloodGroupSpinner;
 
     //protected member fields
@@ -61,10 +61,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     RescueAgent rescueAgent;
     Spinner wilayaSpinner, dayraSpinner, rescueTypeSpinner;
 
-    Button sign;
+    Button sign , backToLogIn;
     CheckBox rescueAgentVelonteer;
     LinearLayout moreInfo;
     ProgressBar progressBar;
+    final List<String> spinnerArraywilaya = new ArrayList<String>();
+    final List<String> spinnerArraydayra = new ArrayList<String>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +86,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         genderSpinner = findViewById(R.id.gender_spinner);
         adress = findViewById(R.id.adress);
         pathologies = findViewById(R.id.pathologies);
-        age = findViewById(R.id.age);
+        yearOfbirth = findViewById(R.id.yearOfBirth);
         bloodGroupSpinner = findViewById(R.id.blood_group_spinner);
         fillBloodGroupSpiner();
 
@@ -93,6 +96,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         rescueAgentVelonteer.setChecked(false);
 
         sign = findViewById(R.id.sign);
+        backToLogIn = findViewById(R.id.back_to_login);
+        backToLogIn.setOnClickListener(this);
         findViewById(R.id.sign).setOnClickListener(this);
         progressBar = findViewById(R.id.progressbar);
         progressBar.setVisibility(View.GONE);
@@ -114,7 +119,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     wilayaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(getBaseContext(), "hhhhhhh", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getBaseContext(), "hhhhhhh", Toast.LENGTH_SHORT).show();
+                            spinnerArraydayra.clear();
                             fillDayra(wilayaSpinner.getSelectedItem() + "");
                         }
 
@@ -180,19 +186,19 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
-        if (age.getText().toString().trim().isEmpty()) {
-            age.setError("enter your Age");
-            age.requestFocus();
+        if (yearOfbirth.getText().toString().trim().isEmpty()) {
+            yearOfbirth.setError("enter your year of birth");
+            yearOfbirth.requestFocus();
             return;
         }
-        if (Integer.parseInt(age.getText().toString())>110) {
-            age.setError("are you + 110 years old !!!");
-            age.requestFocus();
+        if (Integer.parseInt(yearOfbirth.getText().toString())<1910) {
+            yearOfbirth.setError("How Old Are You !!!");
+            yearOfbirth.requestFocus();
             return;
         }
-        if (Integer.parseInt(age.getText().toString()) <12) {
-            age.setError("you stil kid !");
-            age.requestFocus();
+        if (Integer.parseInt(yearOfbirth.getText().toString()) > Calendar.getInstance().get(Calendar.YEAR)) {
+            yearOfbirth.setError("are you from the Future !");
+            yearOfbirth.requestFocus();
             return;
         }
         if (pathologies.getText().toString().trim().isEmpty()) {
@@ -232,6 +238,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             default:
                 blood = BloodGroups.NONE;
         }
+        final int age = Calendar.getInstance().get(Calendar.YEAR)  - Integer.parseInt(yearOfbirth.getText()+"") ;
         progressBar.setVisibility(View.VISIBLE);
         if (!rescueAgentVelonteer.isChecked()) {
             mAuth.createUserWithEmailAndPassword(Email.getText() + "", password.getText() + "")
@@ -244,7 +251,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                         lastName.getText() + "",
                                         genderSpinner.getSelectedItem() + "",
                                         adress.getText() + "",
-                                        Integer.parseInt(age.getText()+"") ,
+                                        Integer.parseInt(age+"") ,
                                         Integer.parseInt(phoneNumber.getText() + ""),
                                         Email.getText() + "",
                                         password.getText() + "",
@@ -274,6 +281,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                             }
                                         }
                                     }
+
 
                                 });
 
@@ -320,7 +328,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                         lastName.getText() + "",
                                         genderSpinner.getSelectedItem() + "",
                                         adress.getText() + "",
-                                        Integer.parseInt(age.getText() + ""),
+                                        Integer.parseInt(age+""),
                                         Integer.parseInt(phoneNumber.getText() + ""),
                                         Email.getText() + "",
                                         password.getText() + "",
@@ -353,6 +361,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                             }
                                         }
                                     }
+
 
                                 });
 
@@ -395,36 +404,60 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void fillWilaya() {
-        final List<String> spinnerArray = new ArrayList<String>();
 
-        databaseRef.child("wilaya").addListenerForSingleValueEvent(new ValueEventListener() {
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    spinnerArray.add(ds.getKey() + "");
+                    spinnerArraywilaya.add(ds.getKey() + "");
                 }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArraywilaya);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                wilayaSpinner.setAdapter(adapter);
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArray);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        wilayaSpinner.setAdapter(adapter);
+       databaseRef.child("wilaya").addValueEventListener(valueEventListener);
+
+
+
+//        databaseRef.child("wilaya").
+//
+//                addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    spinnerArraywilaya.add(ds.getKey() + "");
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
+
     }
 
     private void fillDayra(String mWilaya) {
-        final List<String> spinnerArray = new ArrayList<String>();
 
         databaseRef.child("wilaya").child(mWilaya).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    spinnerArray.add(ds.getKey());
+                    spinnerArraydayra.add(ds.getKey());
                 }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArraydayra);
+
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                dayraSpinner.setAdapter(adapter);
             }
 
             @Override
@@ -432,16 +465,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
             }
         });
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArray);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        dayraSpinner = (Spinner) findViewById(R.id.dayra);
-        dayraSpinner.setAdapter(adapter);
-
     }
 
-    private void fillRescueTypes() {
+    public  void fillRescueTypes() {
         List<String> spinnerArray = new ArrayList<String>();
 
         spinnerArray.add("Volunteer");
@@ -465,8 +491,11 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             case R.id.sign:
                 createNewMember();
                 break;
-
+            case R.id.back_to_login :
+                startActivity(new Intent(getApplicationContext(),Login.class));
+                finish();
         }
+
     }
 
 }
