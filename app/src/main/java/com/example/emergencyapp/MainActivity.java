@@ -44,17 +44,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.MapView;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
-import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -74,9 +64,10 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener /*LocationListener*/ {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
     final List<String> spinnerArraywilaya = new ArrayList<String>();
     final List<String> spinnerArraydayra = new ArrayList<String>();
@@ -88,11 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DrawerLayout drawerLayout;
     DatabaseReference databaseRef;
     FirebaseAuth mAuth;
-    private LocationManager locationManager;
-    private String longiLocation, latutLocation;
-//    EditText deleteInfo_Email,deleteInfo_password;
-//    Button conform;
     CheckBox deleteRescueAgentAccount;
+
+    String CurrentLocation ;
 
     Spinner wilayaSpinner;
     Spinner dayraSpinner;
@@ -100,141 +89,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-//
-//    // the location
-//
-//
-//    void getLocation() {
-//        try {
-//            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, this);
-//
-//        } catch (SecurityException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Override
-//    public void onLocationChanged(Location location) {
-//
-//        data.setText(location.getLatitude() + " " + location.getLongitude());
-//        longiLocation = location.getLongitude() + "";
-//        latutLocation = location.getLatitude() + "";
-//
-//
-//    }
-//
-//
-//    @Override
-//    public void onProviderDisabled(String provider) {
-//        Toast.makeText(MainActivity.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
-//    }
-//
-//    @Override
-//    public void onStatusChanged(String provider, int status, Bundle extras) {
-//
-//    }
-//
-//    @Override
-//    public void onProviderEnabled(String provider) {
-//
-//    }
-//
-
-//    //end of the location
-//
-
-
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length > 0 ){
-//              if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-//                   getLocation();
-//              }else {
-//                  Toast.makeText(this,"permission denied",Toast.LENGTH_SHORT).show();
-//              }
-//        }
-//    }
-
-//    @SuppressLint("MissingPermission")
-//    public void getLocation() {
-//          fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Location> task) {
-//                Location location = task.getResult();
-//                if (location != null){
-//
-//                    try {
-//                        //initialize Geocoder
-//                        Geocoder geocoder = new Geocoder(MainActivity.this,
-//                                Locale.getDefault() );
-//                        //initialize address list
-//                        List<Address> addresses = geocoder.getFromLocation(
-//                                location.getLatitude(),location.getLongitude(),1
-//                        );
-//                        Toast.makeText(getBaseContext(),addresses.get(0).getCountryName() +" "+addresses.get(0).getLocality()+" "+ addresses.get(0)
-//                        .getAddressLine(0)+" "+addresses.get(0).getLatitude()+" "+addresses.get(0).getLongitude()+
-//                                " "+addresses.get(0).getAdminArea(), Toast.LENGTH_LONG).show();
-//                        latitude=addresses.get(0).getLatitude();
-//                        longitude=addresses.get(0).getLongitude();
-//
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        });
-//    }
-//    public double geoLat(){
-//        return latitude;
-//    }
-//
-//    public double geoLon(){
-//        return longitude;
-//    }
-
-    private static void closeDrawer(DrawerLayout drawerLayout) {
-        //close drawer layout
-        // check condition
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            //when drawer is open
-            // close drawer
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-    }
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        // firebase database and authentication
         mAuth = FirebaseAuth.getInstance();
         databaseRef = FirebaseDatabase.getInstance().getReference();
+        //end .
+
+        // fast access to authorities
+        firemanBtn = findViewById(R.id.fireButton);
+        policemanBtn = findViewById(R.id.policeButton);
+        accidentBtn = findViewById(R.id.AccidentButton);
+        // end .
+
+        // S.O.S call
+        emergencyCallBtn = findViewById(R.id.emergency_call);
+
+        // location
+        mapBtn =findViewById(R.id.mapButton);
 
 //        deleteInfo_Email = findViewById(R.id.delete_user_email);
 //        deleteInfo_password = findViewById(R.id.delete_user_password);
 //        conform = findViewById(R.id.delete_confirm);
-        drawerLayout =findViewById(R.id.drawer_layout);
-        emergencyCallBtn = findViewById(R.id.emergency_call);
-        mapBtn =findViewById(R.id.mapButton);
-        firemanBtn = findViewById(R.id.fireButton);
-        policemanBtn = findViewById(R.id.policeButton);
-        accidentBtn = findViewById(R.id.AccidentButton);
 
+        drawerLayout =findViewById(R.id.drawer_layout);
+
+        // on click btn
         emergencyCallBtn.setOnClickListener(this);
         firemanBtn.setOnClickListener(this);
         policemanBtn.setOnClickListener(this);
         accidentBtn.setOnClickListener(this);
         mapBtn.setOnClickListener(this);
-        //fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        // to get current location
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        // permissions to location
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED){
+            getLocation();
+
+        }else {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
+        }
+
     }
 
-    private static void openDrawer(DrawerLayout drawerLayout) {
-        //open drawer layout
-        drawerLayout.openDrawer(GravityCompat.START);
-    }
+
 
     @Override
     public void onClick(View v) {
@@ -257,13 +161,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    // the menu
+    // all menu option
     public void ClickMenu(View view){
         //open drawer
          openDrawer(drawerLayout);
     }
+    private static void closeDrawer(DrawerLayout drawerLayout) {
+        //close drawer layout
+        // check condition
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            //when drawer is open
+            // close drawer
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+    private static void openDrawer(DrawerLayout drawerLayout) {
+        //open drawer layout
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
 
-    public void Clicklogo(View view){
+    public void ClickLogo(View view){
         //close drawer
         closeDrawer(drawerLayout);
     }
@@ -381,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                                             } else {
-                                              // Toast.makeText(MainActivity.this, "Authentication failed",Toast.LENGTH_SHORT).show();
+                                               //Toast.makeText(MainActivity.this, "Authentication failed",Toast.LENGTH_SHORT).show();
                                             }
                                         }
 
@@ -403,33 +320,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-                if(!deleteRescueAgentAccount.isChecked()){
+              if(!deleteRescueAgentAccount.isChecked()){
                     databaseRef.child("Protected member").child(user.getUid()).addValueEventListener(valueEventListener);
 
 
                 }else {
                     databaseRef.child("Rescue agent").child(user.getUid()).addValueEventListener(valueEventListener);
 
-                }
+               }
                 deleteAlertDialog.dismiss();
             }
 
 
         });
 
-       // if(databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).equals(null)){
-
-     //   }else if (databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).equals(null)){
-
-      //  }
 
 
-    }
-
-    public void loginActivity(){
-        mAuth.signOut();
-        finish();
-        startActivity(new Intent(this, Login.class));
     }
 
     public void ClickLogout(View view){
@@ -440,33 +346,67 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void ClickHelp(View view){
 
-        // go to the help page
-        startActivity(new Intent(MainActivity.this,Help.class));
 
+
+    // end menu .
+
+
+
+
+
+    //All main activity option
+
+    protected void btnMapOnClick(){
+        startActivity(new Intent(getBaseContext(),MapFragment.class));
     }
 
-    public void ClickMore(){
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //close drawer
-        closeDrawer(drawerLayout);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (mAuth.getCurrentUser() == null) {
-            finish();
-            startActivity(new Intent(this, Login.class));
+     // fast access to Security authorities
+    protected void btnFireOnClick(){
+        // make phone call
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.CALL_PHONE)
+                == PackageManager.PERMISSION_GRANTED){
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:01021"));
+            startActivity(intent);
+        }else {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.CALL_PHONE},44);
         }
     }
 
+    protected void btnPoliceOnClick(){
+        // make phone call
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.CALL_PHONE)
+                == PackageManager.PERMISSION_GRANTED){
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:01548"));
+            startActivity(intent);
+
+        }else {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.CALL_PHONE},44);
+        }
+    }
+
+    protected void btnAccidentOnClick(){
+        // make phone call
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.CALL_PHONE)
+                == PackageManager.PERMISSION_GRANTED){
+            Intent intent = new Intent(Intent.ACTION_CALL);
+            intent.setData(Uri.parse("tel:01055"));
+            startActivity(intent);
+
+        }else {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.CALL_PHONE},44);
+        }
+    }
+    // end of access
+
+//end of option
+
+     // S.O.S  call
     protected void btnSOSOnClick() {
         databaseRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -475,7 +415,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (mAuth.getCurrentUser() != null) {
             databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                final String tel = "";
+               // final String tel = "";
                 final String[] smsText = new String[1];
                 final String[] wilaya = {""};
                 final String[] dayra = {""};
@@ -485,6 +425,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                     smsText[0] = "Emergengy SMS: " + "\n";
+                   // smsText[0] += CurrentLocation + "\n";
                     smsText[0] += "first name: " + dataSnapshot.child("firstName").getValue() + "\n";
                     smsText[0] += "last name: " + dataSnapshot.child("lastName").getValue() + "\n";
                     smsText[0] += "gender: " + dataSnapshot.child("gender").getValue() + "\n";
@@ -532,14 +473,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             final String rescueAgentType;
                             switch (emergencyType[0]) {
-                                case "incendie":
+                                case "Fire":
                                     rescueAgentType = "FIREMAN";
                                     break;
-                                case "accident":
+                                case "Accident":
                                     rescueAgentType = "SOS_AGENT";
                                     break;
-                                case "urgence madical":
-                                    rescueAgentType = "DOCTOR";
+                                case "Medical Emergency":
+                                    rescueAgentType = "MEDICAL_FIELD";
+                                    break;
+                                case  "Robory" :
+                                    rescueAgentType = "POLICEMAN";
+                                    break;
+                                case  "Danger Threat":
+                                    rescueAgentType = "GENDARM";
                                     break;
                                 default:
                                     rescueAgentType = "VOLUNTEER";
@@ -549,15 +496,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             databaseRef.child("Rescue agent").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    boolean exist = false;
                                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                        if (ds.child("wilaya").getValue().equals(wilaya[0]) &&
-                                                ds.child("dayra").getValue().equals(dayra[0]) &&
-                                                ds.child("rescueType").getValue().equals(rescueAgentType)) {
-                                            agentsTel.add("0" + ds.child("phoneNumber").getValue());
-
+                                        if (Objects.equals(ds.child("wilaya").getValue(), wilaya[0]) &&
+                                                Objects.equals(ds.child("dayra").getValue(), dayra[0]) &&
+                                                Objects.equals(ds.child("rescueType").getValue(), rescueAgentType)) {
+                                           // agentsTel.add("0" + ds.child("phoneNumber").getValue());
+                                            exist =true;
                                             if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                                                 SmsManager smsManager = SmsManager.getDefault();
-                                                smsManager.sendMultipartTextMessage("0" + ds.child("phoneNumber").getValue(), null, smsManager.divideMessage(smsText[0]), null, null);
+                                                smsManager.sendMultipartTextMessage("0" + ds.child("phoneNumber").getValue(), null, smsManager.divideMessage(smsText[0]+" "+CurrentLocation), null, null);
                                                 smsText[0] = "";
                                                 Toast.makeText(MainActivity.this, "sms sent!", Toast.LENGTH_SHORT).show();
                                             } else {
@@ -565,6 +513,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                         new String[]{Manifest.permission.SEND_SMS}, 44);
                                             }
                                         }
+                                    }
+                                    if (!exist){
+                                        Toast.makeText(getBaseContext(), "No Rescue Agent in This Area", Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -583,51 +534,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
             });
-        }
-    }
-
-    protected void btnMapOnClick(){
-        startActivity(new Intent(getBaseContext(),MapFragment.class));
-    }
-
-    protected void btnFireOnClick(){
-        // make phone call
-        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.CALL_PHONE)
-                == PackageManager.PERMISSION_GRANTED){
-            Intent intent = new Intent(Intent.ACTION_CALL);
-            intent.setData(Uri.parse("tel:01021"));
-            startActivity(intent);
-        }else {
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.CALL_PHONE},44);
-        }
-    }
-
-    protected void btnPoliceOnClick(){
-        // make phone call
-        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.CALL_PHONE)
-                == PackageManager.PERMISSION_GRANTED){
-            Intent intent = new Intent(Intent.ACTION_CALL);
-            intent.setData(Uri.parse("tel:01548"));
-            startActivity(intent);
-
-        }else {
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.CALL_PHONE},44);
-        }
-    }
-
-    protected void btnAccidentOnClick(){
-        // make phone call
-        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.CALL_PHONE)
-                == PackageManager.PERMISSION_GRANTED){
-            Intent intent = new Intent(Intent.ACTION_CALL);
-            intent.setData(Uri.parse("tel:01055"));
-            startActivity(intent);
-
-        }else {
-            ActivityCompat.requestPermissions(MainActivity.this,
-                    new String[]{Manifest.permission.CALL_PHONE},44);
         }
     }
 
@@ -653,7 +559,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         databaseRef.child("wilaya").addValueEventListener(valueEventListener);
     }
-
     private void fillDayra(String mWilaya) {
 
         databaseRef.child("wilaya").child(mWilaya).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -674,4 +579,78 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+    // end .
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length > 0 ){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                getLocation();
+            }else {
+                Toast.makeText(this,"permission denied",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //close drawer
+        closeDrawer(drawerLayout);
+        if (mAuth.getCurrentUser() == null) {
+            finish();
+            startActivity(new Intent(this, Login.class));
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mAuth.getCurrentUser() == null) {
+            finish();
+            startActivity(new Intent(this, Login.class));
+        }
+    }
+
+     // get the current location
+    @SuppressLint("MissingPermission")
+    public void getLocation() {
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
+                if (location != null){
+
+                    try {
+                        //initialize Geocoder
+                        Geocoder geocoder = new Geocoder(MainActivity.this,
+                                Locale.getDefault() );
+                        //initialize address list
+                        List<Address> addresses = geocoder.getFromLocation(
+                                location.getLatitude(),location.getLongitude(),1
+                        );
+                         CurrentLocation = addresses.get(0).getCountryName() +"  "
+                                 +addresses.get(0).getLocality()+"  "+addresses.get(0).getAdminArea()+" "
+                                 + addresses.get(0).getAddressLine(0)+" "
+                                 +addresses.get(0).getLatitude()+" "+addresses.get(0).getLongitude();
+                        latitude=addresses.get(0).getLatitude();
+                        longitude=addresses.get(0).getLongitude();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+    // end .
+
+    public void loginActivity(){
+        mAuth.signOut();
+        finish();
+        startActivity(new Intent(this, Login.class));
+    }
+
+
 }

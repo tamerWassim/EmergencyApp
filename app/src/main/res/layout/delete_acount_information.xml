@@ -51,14 +51,14 @@
     <CheckBox
         android:id="@+id/rescue_agent_delete_account"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="5dp"
         android:drawableStart="@drawable/agent"
-        android:text=" are youa Rescue Agent !"
+        android:text=" are you a Rescue Agent !"
         android:textSize="24sp" />
 
 

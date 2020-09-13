@@ -19,9 +19,13 @@
     </string-array>
 
     <string-array name="emergency_type_entries">
-        <item>incendie</item>
-        <item>accident</item>
-        <item>urgence madical</item>
+        <item>Medical Emergency</item>
+        <item>Accident</item>
+        <item>Fire</item>
+        <item>Robory</item>
+        <item>Danger Threat</item>
+        <item>Other</item>
+
     </string-array>
 
 </resources>

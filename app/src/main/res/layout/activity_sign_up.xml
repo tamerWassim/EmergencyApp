@@ -37,23 +37,21 @@
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:background="@color/menu"/>
+
         <Button
-            android:layout_width="match_parent"
             android:id="@+id/back_to_login"
-            android:layout_height="40dp"
-            android:layout_marginLeft="50dp"
-            android:gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="300dp"
             android:layout_marginRight="50dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/text_view_theme"
-            android:text="Back To Login"
-            android:textColor="@color/menu"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:paddingStart="50dp"
-            android:layout_marginBottom="20dp"
-            android:paddingEnd="50dp"
             android:drawableStart="@drawable/ic_back_to_login"
-            />
+            android:gravity="center"
+            android:paddingStart="30dp"
+            android:paddingEnd="50dp"
+            android:textColor="@color/menu"
+            android:textStyle="bold" />
 
         <ScrollView
             android:id="@+id/scrollView2"
@@ -226,7 +224,7 @@
                         android:paddingEnd="20dp"
                         android:drawablePadding="12dp"
                         android:ems="10"
-                        android:hint="Enter your pathologies"
+                        android:hint=" pathologies"
                         android:inputType="textMultiLine"
                         android:drawableStart="@drawable/ic_pathologies_icon"
                         android:paddingStart="20dp"
@@ -298,13 +296,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="30dp"
+
                     android:layout_marginRight="20dp"
-                    android:layout_marginBottom="5dp"
+
                     android:background="@drawable/log_button"
                     android:drawableStart="@drawable/ic_signup"
-                    android:drawablePadding="-140dp"
                     android:paddingStart="100dp"
+                    android:paddingEnd="100dp"
+
+
                     android:text="Sign Up"
                     android:textColor="@android:color/background_dark"
                     android:textSize="22sp" />

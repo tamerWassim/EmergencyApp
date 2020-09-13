@@ -115,8 +115,9 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/log_button"
             android:drawableStart="@drawable/ic_baseline_power_24"
-            android:paddingStart="120dp"
-            android:drawablePadding="-140dp"
+
+            android:paddingStart="100dp"
+            android:paddingEnd="100dp"
             android:text="login"
             android:textColor="@android:color/background_dark"
             android:textSize="22sp" />

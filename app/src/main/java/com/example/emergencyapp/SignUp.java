@@ -257,7 +257,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                         password.getText() + "",
                                         pathologies.getText() + "",
                                         blood);
-                                Toast.makeText(getBaseContext(), protectedMember.toString(), Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(getBaseContext(), protectedMember.toString(), Toast.LENGTH_SHORT).show();
 
                                 databaseRef.child("Protected member")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -304,11 +304,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                     case "SOS Agent":
                                         rescueType = RescueTypes.SOS_AGENT;
                                         break;
-                                    case "Doctor":
-                                        rescueType = RescueTypes.DOCTOR;
-                                        break;
-                                    case "Nurse":
-                                        rescueType = RescueTypes.NURSE;
+                                    case "Medical Field":
+                                        rescueType = RescueTypes.MEDICAL_FIELD;
                                         break;
                                     case "Fireman":
                                         rescueType = RescueTypes.FIREMAN;
@@ -337,7 +334,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                         wilayaSpinner.getSelectedItem() + "",
                                         dayraSpinner.getSelectedItem() + "",
                                         rescueType);
-                                Toast.makeText(getBaseContext(), rescueAgent.toString(), Toast.LENGTH_LONG).show();
+                              //  Toast.makeText(getBaseContext(), rescueAgent.toString(), Toast.LENGTH_LONG).show();
 
                                 databaseRef.child("Rescue agent")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -374,15 +371,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        if (mAuth.getCurrentUser() != null) {
-//            //handle the already login user
-//
-//        }
-//    }
 
     private void fillBloodGroupSpiner() {
 
@@ -427,21 +415,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
 
 
-//        databaseRef.child("wilaya").
-//
-//                addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    spinnerArraywilaya.add(ds.getKey() + "");
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
 
 
     }
@@ -472,8 +445,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         spinnerArray.add("Volunteer");
         spinnerArray.add("SOS Agent");
-        spinnerArray.add("Doctor");
-        spinnerArray.add("Nurse");
+        spinnerArray.add("Medical Field");
         spinnerArray.add("Fireman");
         spinnerArray.add("Policeman");
         spinnerArray.add("Gendarm");

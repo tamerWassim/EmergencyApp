@@ -3,7 +3,9 @@ package com.example.emergencyapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -76,13 +78,10 @@ public class profile extends AppCompatActivity {
                                 lastName.setText(dataSnapshot.child("lastName").getValue().toString());
                                 gender.setText(dataSnapshot.child("gender").getValue().toString());
                                 phoneNumber.setText(dataSnapshot.child("phoneNumber").getValue().toString());
-//                    str += "E-mail: " + dataSnapshot.child("email").getValue() + "\n";
                                 adress.setText(dataSnapshot.child("adress").getValue().toString());
-
                                 pathologies.setText(dataSnapshot.child("pathologies").getValue().toString());
                                 age.setText(dataSnapshot.child("age").getValue().toString());
                                 bloodGroup.setText(dataSnapshot.child("bloodGroup").getValue().toString());
-
                             }
 
                             @Override
@@ -97,9 +96,6 @@ public class profile extends AppCompatActivity {
                                     databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(valueEventListener2);
                                 }else if(PM == 2) databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(valueEventListener2);
 
-                            // RA = Integer.parseInt(dataSnapshot.child("id").getValue() + "");
-//                            path.setText(t);
-
                         }
 
                     }
@@ -113,7 +109,7 @@ public class profile extends AppCompatActivity {
 
             };
 
-            databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(valueEventListener);
+             databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(valueEventListener);
 
              databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(valueEventListener);
 
@@ -123,72 +119,17 @@ public class profile extends AppCompatActivity {
          Edit.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-
+             goToUpdate();
 
 
              }
          });
 
-//        //textView.setText(databaseRef.child(mAuth.getCurrentUser().getUid()).child("email").+"");
-//        //textView.setText(mAuth.getCurrentUser().getUid());
-//
-//        //databaseRef.child(databaseRef.child(mAuth.getCurrentUser().getUid()).getKey()).getParent();
-//
-//
-////        if (mAuth.getCurrentUser() != null){
-////
-////            databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-////                @Override
-////                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-////
-////                   String str = dataSnapshot.child("email").getValue()+"  ";
-////
-////                   // String parent = dataSnapshot.getKey(String.class);
-////
-//////                     if(dataSnapshot.child("rescueType").getValue().equals(null)){
-//////
-//////
-//////                      }
-//////                     str+= ;
-////
-////                    textView.setText(str);
-////                  //  databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).removeValue();
-////
-////                    //deleteDatabase(dataSnapshot.toString());
-////                }
-////
-////                @Override
-////                public void onCancelled(@NonNull DatabaseError databaseError) {
-////
-////                }
-////
-////            });
-//
-//
-//        ValueEventListener valueEventListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()) {
-////                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                        ArrayList<String> tamer = new ArrayList<>();
-//                         tamer.add(dataSnapshot.getValue().toString() );
-//
-//                        textView.setText(tamer+"  ");
-//                    }
-//                }
-////            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        };
-////
-////
-//        Query query = databaseRef.child("Protected member").orderByChild("email").equalTo("tamer@gmail.com");
-//
-//        query.addValueEventListener(valueEventListener);
 
+    }
+
+    public void goToUpdate(){
+        startActivity(new Intent(profile.this,ProfileUpdate.class));
     }
 }
 
