@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    app:layout_goneMarginLeft="5dp"
+    app:layout_goneMarginRight="5dp"
     android:orientation="vertical"
     android:gravity="center"
     android:layout_marginRight="20dp"
-    android:background="@color/white"
+    android:background="@drawable/text_view_theme"
     android:layout_marginLeft="20dp">
 <LinearLayout
     android:layout_width="match_parent"
@@ -20,7 +24,7 @@
     <Spinner
         android:id="@+id/wilaya_call"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70dp"
         android:background="@drawable/text_view_theme"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp">
@@ -37,7 +41,7 @@
     <Spinner
         android:id="@+id/dayra_call"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:background="@drawable/text_view_theme"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
@@ -57,7 +61,7 @@
     <Spinner
         android:id="@+id/emergency_type_call"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:entries="@array/emergency_type_entries"
         android:background="@drawable/text_view_theme"
         android:gravity="center"
@@ -70,7 +74,7 @@
     <Button
         android:id="@+id/confirm_call"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:paddingStart="50dp"
         android:paddingEnd="50dp"
         android:text="Confirm"
@@ -79,6 +83,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
+        android:textStyle="bold"
         android:textColor="#FF0000"
         android:textSize="24sp" />
 

@@ -10,13 +10,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginBottom="50dp">
+        android:layout_height="755dp"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/menu"
             android:gravity="center"
             android:orientation="horizontal">
@@ -32,13 +33,28 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/positionInfo"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/darkerGray"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
+
+        </LinearLayout>
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="10dp"
             android:background="@color/menu" />
@@ -49,16 +65,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MapFragment"
-            tools:layout="@layout/map_location"/>
+            tools:layout="@layout/map_location" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/menu" />
 
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@color/menu" />
 
 
-    </LinearLayout>>
+
+    </LinearLayout>
+
 </LinearLayout>

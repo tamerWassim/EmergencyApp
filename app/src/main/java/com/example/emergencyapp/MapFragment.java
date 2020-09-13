@@ -46,6 +46,7 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
     Double latitude = 0.0 ;
     Double longitude =0.0;
     SupportMapFragment mapFragment ;
+    TextView positionInfo ;
     String adress;
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -60,6 +61,7 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
         // Retrieve the content view that renders the map.
 
         // Get the SupportMapFragment and request notification
+        positionInfo =findViewById(R.id.positionInfo);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
 
 
@@ -89,8 +91,7 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
         super.onStart();
        // mapFragment.onPause();
         getLocation();
-
-        Toast.makeText(getBaseContext(), latitude + "", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(),  "", Toast.LENGTH_SHORT).show();
         mapFragment.getMapAsync(this);
     }
 
@@ -107,9 +108,9 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
                         //initialize address list
                         List<Address> addresses = geocoder.getFromLocation(
                                 location.getLatitude(),location.getLongitude(),1);
-//                       Toast.makeText(getApplicationContext() ,(addresses.get(0).getCountryName() +" "+addresses.get(0).getLocality()+" "+ addresses.get(0)
-//                                .getAddressLine(0)+" "+addresses.get(0).getLatitude()+" "+addresses.get(0).getLongitude()+
-//                                " "+addresses.get(0).getAdminArea()),Toast.LENGTH_LONG).show();
+                        positionInfo.setText(addresses.get(0).getCountryName() +" , "+addresses.get(0).getAdminArea()+" , "+addresses.get(0).getLocality()+"\n " +
+                                ""+ addresses.get(0).getAddressLine(0)+"\n" +
+                                ""+addresses.get(0).getLatitude()+" , "+addresses.get(0).getLongitude()+ " ");
                          adress = addresses.get(0).getAdminArea()+" "+ addresses.get(0).getLocality()+" "+addresses.get(0).getCountryName() +" ";
                          latitude= addresses.get(0).getLatitude();
                          longitude=addresses.get(0).getLongitude();
