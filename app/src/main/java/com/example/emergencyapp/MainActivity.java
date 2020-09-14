@@ -69,8 +69,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
-  //  final List<String> spinnerArraywilaya = new ArrayList<String>();
- //   final List<String> spinnerArraydayra = new ArrayList<String>();
+    final List<String> spinnerArraywilaya = new ArrayList<String>();
+    final List<String> spinnerArraydayra = new ArrayList<String>();
 
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
     Button emergencyCallBtn ,mapBtn,firemanBtn,policemanBtn,accidentBtn;
@@ -85,9 +85,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Spinner wilayaSpinner;
     Spinner dayraSpinner;
-
-    //gps wilaya and dayra
-    String gpsWilaya ,gpsDayra ;
 
 
 
@@ -417,18 +414,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final ArrayList<String> agentsTel = new ArrayList<>();
 
         if (mAuth.getCurrentUser() != null) {
+
             databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                // final String tel = "";
                 final String[] smsText = new String[1];
-               // final String[] wilaya = {""};
-               // final String[] dayra = {""};
+                final String[] wilaya = {""};
+                final String[] dayra = {""};
                 final String[] emergencyType = {""};
 
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                     smsText[0] = "Emergengy SMS: " + "\n";
-                   // smsText[0] += CurrentLocation + "\n";
+                    // smsText[0] += CurrentLocation + "\n";
                     smsText[0] += "first name: " + dataSnapshot.child("firstName").getValue() + "\n";
                     smsText[0] += "last name: " + dataSnapshot.child("lastName").getValue() + "\n";
                     smsText[0] += "gender: " + dataSnapshot.child("gender").getValue() + "\n";
@@ -437,8 +435,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     smsText[0] += "age: " + dataSnapshot.child("age").getValue() + "\n";
                     smsText[0] += "blood group: " + dataSnapshot.child("bloodGroup").getValue() + "\n \n";
                     smsText[0] += "phone number: 0" + dataSnapshot.child("phoneNumber").getValue() + "\n";
-                    smsText[0] += "location:"+ CurrentLocation + "\n";
-
+                    smsText[0] += "location:" + CurrentLocation + "\n";
 
                     final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
                     final View view = getLayoutInflater().inflate(R.layout.call_informations, null);
@@ -446,31 +443,155 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     final AlertDialog alertDialog = alertBuilder.create();
                     alertDialog.show();
 
-//                    wilayaSpinner = view.findViewById(R.id.wilaya_call);
-//                    dayraSpinner = view.findViewById(R.id.dayra_call);
-//
-//                    spinnerArraywilaya.clear();
-//                    fillWilaya();
-//                    wilayaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                        @Override
-//                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                            //Toast.makeText(getBaseContext(), "hhhhhhh", Toast.LENGTH_SHORT).show();
-//                            spinnerArraydayra.clear();
-//                            fillDayra(wilayaSpinner.getSelectedItem() + "");
-//                        }
-//
-//                        @Override
-//                        public void onNothingSelected(AdapterView<?> parent) {
-//
-//                        }
-//                    });
+                    wilayaSpinner = view.findViewById(R.id.wilaya_call);
+                    dayraSpinner = view.findViewById(R.id.dayra_call);
+
+                    spinnerArraywilaya.clear();
+                    fillWilaya();
+                    wilayaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            //Toast.makeText(getBaseContext(), "hhhhhhh", Toast.LENGTH_SHORT).show();
+                            spinnerArraydayra.clear();
+                            fillDayra(wilayaSpinner.getSelectedItem() + "");
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+                    if (dataSnapshot.child("gender").getValue() == null) {
+                        databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            // final String tel = "";
+                            final String[] smsText = new String[1];
+                            final String[] wilaya = {""};
+                            final String[] dayra = {""};
+                            final String[] emergencyType = {""};
+
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                smsText[0] = "Emergengy SMS: " + "\n";
+                                // smsText[0] += CurrentLocation + "\n";
+                                smsText[0] += "first name: " + dataSnapshot.child("firstName").getValue() + "\n";
+                                smsText[0] += "last name: " + dataSnapshot.child("lastName").getValue() + "\n";
+                                smsText[0] += "gender: " + dataSnapshot.child("gender").getValue() + "\n";
+                                smsText[0] += "adress: " + dataSnapshot.child("adress").getValue() + "\n";
+                                smsText[0] += "pathologies: " + dataSnapshot.child("pathologies").getValue() + "\n";
+                                smsText[0] += "age: " + dataSnapshot.child("age").getValue() + "\n";
+                                smsText[0] += "blood group: " + dataSnapshot.child("bloodGroup").getValue() + "\n \n";
+                                smsText[0] += "phone number: 0" + dataSnapshot.child("phoneNumber").getValue() + "\n";
+                                smsText[0] += "location:" + CurrentLocation + "\n";
+
+
+                                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+                                final View view = getLayoutInflater().inflate(R.layout.call_informations, null);
+                                alertBuilder.setView(view);
+                                final AlertDialog alertDialog = alertBuilder.create();
+                                alertDialog.show();
+
+                                wilayaSpinner = view.findViewById(R.id.wilaya_call);
+                                dayraSpinner = view.findViewById(R.id.dayra_call);
+
+                                spinnerArraywilaya.clear();
+                                fillWilaya();
+                                wilayaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                        //Toast.makeText(getBaseContext(), "hhhhhhh", Toast.LENGTH_SHORT).show();
+                                        spinnerArraydayra.clear();
+                                        fillDayra(wilayaSpinner.getSelectedItem() + "");
+                                    }
+
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> parent) {
+
+                                    }
+                                });
+
+                                Button confirmCallBtn = view.findViewById(R.id.confirm_call);
+                                confirmCallBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        wilaya[0] = wilayaSpinner.getSelectedItem() + "";
+                                        dayra[0] = dayraSpinner.getSelectedItem() + "";
+                                        Spinner spinner = view.findViewById(R.id.emergency_type_call);
+                                        emergencyType[0] = spinner.getSelectedItem() + "";
+                                        //Toast.makeText(getBaseContext(), emergencyType[0], Toast.LENGTH_SHORT).show();
+
+                                        final String rescueAgentType;
+                                        switch (emergencyType[0]) {
+                                            case "Fire":
+                                                rescueAgentType = "FIREMAN";
+                                                break;
+                                            case "Accident":
+                                                rescueAgentType = "SOS_AGENT";
+                                                break;
+                                            case "Medical Emergency":
+                                                rescueAgentType = "MEDICAL_FIELD";
+                                                break;
+                                            case "Robory":
+                                                rescueAgentType = "POLICEMAN";
+                                                break;
+                                            case "Danger Threat":
+                                                rescueAgentType = "GENDARM";
+                                                break;
+                                            default:
+                                                rescueAgentType = "VOLUNTEER";
+                                                break;
+                                        }
+
+                                        databaseRef.child("Rescue agent").addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                boolean exist = false;
+                                                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                                    if (Objects.equals(ds.child("wilaya").getValue(), wilaya[0]) &&
+                                                            Objects.equals(ds.child("dayra").getValue(), dayra[0]) &&
+                                                            Objects.equals(ds.child("rescueType").getValue(), rescueAgentType)) {
+                                                        // agentsTel.add("0" + ds.child("phoneNumber").getValue());
+                                                        exist = true;
+                                                        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                                                            SmsManager smsManager = SmsManager.getDefault();
+                                                            smsManager.sendMultipartTextMessage("0" + ds.child("phoneNumber").getValue(), null, smsManager.divideMessage(smsText[0]), null, null);
+                                                            smsText[0] = "";
+                                                            Toast.makeText(MainActivity.this, "sms sent!", Toast.LENGTH_SHORT).show();
+                                                        } else {
+                                                            ActivityCompat.requestPermissions(MainActivity.this,
+                                                                    new String[]{Manifest.permission.SEND_SMS}, 44);
+                                                        }
+                                                    }
+                                                }
+                                                if (!exist) {
+                                                    Toast.makeText(getBaseContext(), "No Rescue Agent in This Area", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                        alertDialog.dismiss();
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }else {
 
                     Button confirmCallBtn = view.findViewById(R.id.confirm_call);
                     confirmCallBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                           // wilaya[0] = wilayaSpinner.getSelectedItem() + "";
-                          //  dayra[0] = dayraSpinner.getSelectedItem() + "";
+                            wilaya[0] = wilayaSpinner.getSelectedItem() + "";
+                            dayra[0] = dayraSpinner.getSelectedItem() + "";
                             Spinner spinner = view.findViewById(R.id.emergency_type_call);
                             emergencyType[0] = spinner.getSelectedItem() + "";
                             //Toast.makeText(getBaseContext(), emergencyType[0], Toast.LENGTH_SHORT).show();
@@ -486,10 +607,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 case "Medical Emergency":
                                     rescueAgentType = "MEDICAL_FIELD";
                                     break;
-                                case  "Robory" :
+                                case "Robory":
                                     rescueAgentType = "POLICEMAN";
                                     break;
-                                case  "Danger Threat":
+                                case "Danger Threat":
                                     rescueAgentType = "GENDARM";
                                     break;
                                 default:
@@ -502,11 +623,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     boolean exist = false;
                                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                        if (Objects.equals(ds.child("wilaya").getValue(), gpsWilaya) &&
-                                                Objects.equals(ds.child("dayra").getValue(), gpsDayra) &&
+                                        if (Objects.equals(ds.child("wilaya").getValue(), wilaya[0]) &&
+                                                Objects.equals(ds.child("dayra").getValue(), dayra[0]) &&
                                                 Objects.equals(ds.child("rescueType").getValue(), rescueAgentType)) {
-                                           // agentsTel.add("0" + ds.child("phoneNumber").getValue());
-                                            exist =true;
+                                            // agentsTel.add("0" + ds.child("phoneNumber").getValue());
+                                            exist = true;
                                             if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                                                 SmsManager smsManager = SmsManager.getDefault();
                                                 smsManager.sendMultipartTextMessage("0" + ds.child("phoneNumber").getValue(), null, smsManager.divideMessage(smsText[0]), null, null);
@@ -518,7 +639,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             }
                                         }
                                     }
-                                    if (!exist){
+                                    if (!exist) {
                                         Toast.makeText(getBaseContext(), "No Rescue Agent in This Area", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -532,57 +653,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     });
                 }
+                }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
+
+
             });
+
         }
     }
 
-//    private void fillWilaya() {
-//
-//        ValueEventListener valueEventListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    spinnerArraywilaya.add(ds.getKey() + "");
-//                }
-//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArraywilaya);
-//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                wilayaSpinner.setAdapter(adapter);
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        };
-//
-//        databaseRef.child("wilaya").addValueEventListener(valueEventListener);
-//    }
-//    private void fillDayra(String mWilaya) {
-//
-//        databaseRef.child("wilaya").child(mWilaya).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    spinnerArraydayra.add(ds.getKey());
-//                }
-//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArraydayra);
-//
-//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                dayraSpinner.setAdapter(adapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    private void fillWilaya() {
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    spinnerArraywilaya.add(ds.getKey() + "");
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArraywilaya);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                wilayaSpinner.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+
+        databaseRef.child("wilaya").addValueEventListener(valueEventListener);
+    }
+    private void fillDayra(String mWilaya) {
+
+        databaseRef.child("wilaya").child(mWilaya).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    spinnerArraydayra.add(ds.getKey());
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArraydayra);
+
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                dayraSpinner.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
     // end .
 
 
@@ -636,8 +761,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         );
                         CurrentLocation = addresses.get(0).getCountryName() +"," +addresses.get(0).getLocality()+","+addresses.get(0).getAdminArea()+"," + addresses.get(0).getAddressLine(0)+"";
                                 // +addresses.get(0).getLatitude()+" "+addresses.get(0).getLongitude();
-                        gpsWilaya = addresses.get(0).getAdminArea();
-                        gpsDayra = addresses.get(0).getLocality();
                         latitude=addresses.get(0).getLatitude();
                         longitude=addresses.get(0).getLongitude();
 

@@ -12,13 +12,25 @@
     android:layout_marginRight="20dp"
     android:background="@drawable/text_view_theme"
     android:layout_marginLeft="20dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wilaya :"
+        android:layout_marginTop="20dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/menu"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_gravity="start"/>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="center"
-    android:layout_marginRight="60dp"
-    android:layout_marginLeft="60dp">
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp">
+
 
 
     <Spinner
@@ -30,13 +42,23 @@
         android:layout_marginTop="20dp">
     </Spinner>
 </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dayra :"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/menu"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_gravity="start"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginRight="60dp"
-        android:layout_marginLeft="60dp">
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp">
 
     <Spinner
         android:id="@+id/dayra_call"
@@ -48,6 +70,16 @@
         >
     </Spinner>
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rescue Type :"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/menu"
+        android:layout_marginEnd="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_gravity="start"/>
 
 
     <LinearLayout
@@ -55,8 +87,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginRight="60dp"
-        android:layout_marginLeft="60dp">
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp">
 
     <Spinner
         android:id="@+id/emergency_type_call"

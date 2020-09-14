@@ -83,7 +83,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
-                    progressBar.setVisibility(View.GONE);
                     finish();
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -91,7 +90,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     Toast.makeText(getApplicationContext(), "your loged in perfect", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
                 }
+                progressBar.setVisibility(View.GONE);
+
             }
 
         });
