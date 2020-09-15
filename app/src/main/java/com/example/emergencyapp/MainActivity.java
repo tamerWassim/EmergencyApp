@@ -441,7 +441,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     final View view = getLayoutInflater().inflate(R.layout.call_informations, null);
                     alertBuilder.setView(view);
                     final AlertDialog alertDialog = alertBuilder.create();
-                    alertDialog.show();
+
 
                     wilayaSpinner = view.findViewById(R.id.wilaya_call);
                     dayraSpinner = view.findViewById(R.id.dayra_call);
@@ -464,7 +464,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     if (dataSnapshot.child("gender").getValue() == null) {
                         databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                            // final String tel = "";
+                            String tel = "";
                             final String[] smsText = new String[1];
                             final String[] wilaya = {""};
                             final String[] dayra = {""};
@@ -484,6 +484,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 smsText[0] += "blood group: " + dataSnapshot.child("bloodGroup").getValue() + "\n \n";
                                 smsText[0] += "phone number: 0" + dataSnapshot.child("phoneNumber").getValue() + "\n";
                                 smsText[0] += "location:" + CurrentLocation + "\n";
+                                tel = dataSnapshot.child("phoneNumber").getValue()+"";
 
 
                                 final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -548,21 +549,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 boolean exist = false;
                                                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                                    if (Objects.equals(ds.child("wilaya").getValue(), wilaya[0]) &&
-                                                            Objects.equals(ds.child("dayra").getValue(), dayra[0]) &&
-                                                            Objects.equals(ds.child("rescueType").getValue(), rescueAgentType)) {
-                                                        // agentsTel.add("0" + ds.child("phoneNumber").getValue());
-                                                        exist = true;
-                                                        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                                                            SmsManager smsManager = SmsManager.getDefault();
-                                                            smsManager.sendMultipartTextMessage("0" + ds.child("phoneNumber").getValue(), null, smsManager.divideMessage(smsText[0]), null, null);
-                                                            smsText[0] = "";
-                                                            Toast.makeText(MainActivity.this, "sms sent!", Toast.LENGTH_SHORT).show();
-                                                        } else {
-                                                            ActivityCompat.requestPermissions(MainActivity.this,
-                                                                    new String[]{Manifest.permission.SEND_SMS}, 44);
+
+                                                        if (Objects.equals(ds.child("wilaya").getValue(), wilaya[0]) &&
+                                                                Objects.equals(ds.child("dayra").getValue(), dayra[0]) &&
+                                                                Objects.equals(ds.child("rescueType").getValue(), rescueAgentType)&&
+                                                                !Objects.equals(ds.child("phoneNumber").getValue(), dataSnapshot.child(mAuth.getCurrentUser().getUid()).child("phoneNumber").getValue())) {
+                                                            // agentsTel.add("0" + ds.child("phoneNumber").getValue());
+                                                            exist = true;
+                                                            if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                                                                SmsManager smsManager = SmsManager.getDefault();
+                                                                smsManager.sendMultipartTextMessage("0" + ds.child("phoneNumber").getValue(), null, smsManager.divideMessage(smsText[0]), null, null);
+                                                                smsText[0] = "";
+                                                                Toast.makeText(MainActivity.this, "sms sent!", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                ActivityCompat.requestPermissions(MainActivity.this,
+                                                                        new String[]{Manifest.permission.SEND_SMS}, 44);
+                                                            }
                                                         }
-                                                    }
+
                                                 }
                                                 if (!exist) {
                                                     Toast.makeText(getBaseContext(), "No Rescue Agent in This Area", Toast.LENGTH_SHORT).show();
@@ -586,8 +590,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         });
                     }else {
 
-                    Button confirmCallBtn = view.findViewById(R.id.confirm_call);
-                    confirmCallBtn.setOnClickListener(new View.OnClickListener() {
+                        alertDialog.show();
+                     Button confirmCallBtn = view.findViewById(R.id.confirm_call);
+                     confirmCallBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             wilaya[0] = wilayaSpinner.getSelectedItem() + "";
@@ -649,6 +654,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 }
                             });
+
                             alertDialog.dismiss();
                         }
                     });

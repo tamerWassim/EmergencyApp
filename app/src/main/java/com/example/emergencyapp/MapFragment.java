@@ -48,6 +48,8 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
     SupportMapFragment mapFragment ;
     TextView positionInfo ;
     String adress;
+
+
     FusedLocationProviderClient fusedLocationProviderClient;
 
     Button btn;
@@ -62,11 +64,12 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
 
         // Get the SupportMapFragment and request notification
         positionInfo =findViewById(R.id.positionInfo);
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
+
 
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED){
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
             getLocation();
             // when the map is ready to be used.
             mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -82,16 +85,16 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
     protected void onResume() {
         super.onResume();
         getLocation();
-      //  Toast.makeText(getBaseContext(), latitude + "", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(getBaseContext(), latitude + "", Toast.LENGTH_SHORT).show();
         mapFragment.getMapAsync(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-       // mapFragment.onPause();
+        // mapFragment.onPause();
         getLocation();
-        Toast.makeText(getBaseContext(),  "", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(),  "", Toast.LENGTH_SHORT).show();
         mapFragment.getMapAsync(this);
     }
 
@@ -121,8 +124,10 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
-
     }
+
+
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -135,5 +140,6 @@ public class MapFragment extends AppCompatActivity implements OnMapReadyCallback
             //googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
             googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
             googleMap.setMinZoomPreference(4);
+
     }
 }
