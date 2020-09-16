@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileUpdate">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical">
-
 
         <ImageView
             android:layout_width="match_parent"
@@ -28,14 +28,15 @@
             android:textColor="#FBFBFB"
             android:textSize="36sp"
             android:textStyle="bold" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
-            android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
-            android:background="@color/menu"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/menu" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -55,9 +56,6 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:orientation="vertical">
-
-
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -82,14 +80,11 @@
                         android:id="@+id/updateFN"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:inputType="text"
                         android:textColor="@android:color/background_dark"
                         android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:inputType="text"
-                        android:layout_marginRight="10dp"
-
-                        />
-
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -102,12 +97,10 @@
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="25dp"
-
                         android:paddingBottom="15dp"
                         android:text="Last Name : "
                         android:textColor="@color/menu"
@@ -118,16 +111,14 @@
                         android:id="@+id/updateLN"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@android:color/background_dark"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
                         android:layout_marginRight="10dp"
                         android:inputType="text"
-
-                        />
-
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -141,8 +132,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="25dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginRight="25dp"
                         android:paddingBottom="10dp"
                         android:text="Gender : "
                         android:textColor="@color/menu"
@@ -169,6 +160,7 @@
                         android:textSize="24sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -178,17 +170,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-
-                        android:text="Year of birth  : "
-                        android:gravity="center"
-
-                        android:textColor="@color/menu"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="25dp"
-
+                        android:gravity="center"
+                        android:text="Year of birth  : "
+                        android:textColor="@color/menu"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -197,7 +185,6 @@
                         android:layout_width="218dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="0dp"
-
                         android:layout_marginRight="50dp"
                         android:layout_marginBottom="5dp"
                         android:drawablePadding="12dp"
@@ -210,8 +197,6 @@
 
                 </LinearLayout>
 
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -221,15 +206,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="25dp"
+                        android:gravity="center"
                         android:paddingBottom="15dp"
                         android:text="Phone Number : "
                         android:textColor="@color/menu"
-                        android:gravity="center"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -237,14 +221,11 @@
                         android:id="@+id/updatePN"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textColor="@android:color/background_dark"
                         android:layout_marginRight="10dp"
-                        android:textSize="20sp"
                         android:inputType="phone"
-                        android:textStyle="bold"
-
-                        />
-
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -257,14 +238,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="25dp"
+                        android:paddingBottom="15dp"
                         android:text="Adress : "
                         android:textColor="@color/menu"
-                        android:paddingBottom="15dp"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -272,14 +252,11 @@
                         android:id="@+id/updateAD"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
+                        android:inputType="text"
                         android:textColor="@android:color/background_dark"
                         android:textSize="20sp"
-                        android:layout_marginRight="10dp"
-                        android:textStyle="bold"
-                        android:inputType="text"
-
-                        />
-
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -292,14 +269,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="25dp"
+                        android:paddingBottom="15dp"
                         android:text="Pathologies : "
                         android:textColor="@color/menu"
-                        android:paddingBottom="15dp"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -307,12 +283,10 @@
                         android:id="@+id/updatePA"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"
                         android:textColor="@android:color/background_dark"
                         android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:layout_marginRight="10dp"
-
-                        />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -325,15 +299,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="25dp"
-                        android:text="BloodType : "
-                        android:gravity="center"
                         android:layout_marginTop="20dp"
+                        android:layout_marginRight="25dp"
+                        android:gravity="center"
                         android:paddingBottom="15dp"
+                        android:text="BloodType : "
                         android:textColor="@color/menu"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -354,12 +327,7 @@
                         android:textColor="#000000"
                         android:textSize="24sp" />
 
-
                 </LinearLayout>
-
-
-
-
 
                 <Button
                     android:id="@+id/UpdateProfile"
@@ -371,19 +339,18 @@
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/log_button"
                     android:drawableStart="@drawable/ic_baseline_edit_24"
+                    android:gravity="center"
                     android:paddingStart="65dp"
                     android:paddingEnd="65dp"
-                    android:gravity="center"
                     android:text="Update"
-                    android:textStyle="bold"
                     android:textColor="@android:color/background_dark"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
 
                     <View
                         android:layout_width="match_parent"
@@ -397,8 +364,8 @@
 
             </LinearLayout>
 
-
         </ScrollView>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

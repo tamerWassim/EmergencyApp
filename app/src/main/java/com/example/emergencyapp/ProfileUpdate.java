@@ -1,8 +1,5 @@
 package com.example.emergencyapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +7,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,19 +25,15 @@ import java.util.List;
 
 public class ProfileUpdate extends AppCompatActivity {
 
-    EditText firstName,lastName,phoneNumber,adress,pathologies,YearOfBirth;
-    Spinner BloodType,Gender;
-    Button Update ;
-    String FN ,LN,PN,AD,PA,BT,GN,YOB;
-    int age ;
-
-    int PM ;
-
-
+    EditText firstName, lastName, phoneNumber, adress, pathologies, YearOfBirth;
+    Spinner BloodType, Gender;
+    Button Update;
+    String FN, LN, PN, AD, PA, BT, GN, YOB;
+    int age;
+    int PM;
 
     FirebaseAuth mAuth;
     DatabaseReference databaseRef;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +47,13 @@ public class ProfileUpdate extends AppCompatActivity {
         adress = findViewById(R.id.updateAD);
         pathologies = findViewById(R.id.updatePA);
         Update = findViewById(R.id.UpdateProfile);
-        YearOfBirth =findViewById(R.id.updateYOB);
-        BloodType =findViewById(R.id.updateBT);
+        YearOfBirth = findViewById(R.id.updateYOB);
+        BloodType = findViewById(R.id.updateBT);
         Gender = findViewById(R.id.updateGN);
 
         databaseRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         fillBloodTypeSpiner();
-
 
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +95,7 @@ public class ProfileUpdate extends AppCompatActivity {
                         YearOfBirth.requestFocus();
                         return;
                     }
-                    if (Integer.parseInt(YearOfBirth.getText().toString())<1910) {
+                    if (Integer.parseInt(YearOfBirth.getText().toString()) < 1910) {
                         YearOfBirth.setError("How Old Are You !!!");
                         YearOfBirth.requestFocus();
                         return;
@@ -113,7 +107,6 @@ public class ProfileUpdate extends AppCompatActivity {
                     }
 
 
-
                     ValueEventListener valueEventListener = new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -123,9 +116,8 @@ public class ProfileUpdate extends AppCompatActivity {
                             AD = adress.getText().toString();
                             PA = pathologies.getText().toString();
                             YOB = YearOfBirth.getText().toString();
-                            age =Calendar.getInstance().get(Calendar.YEAR)- Integer.parseInt(YOB);
+                            age = Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(YOB);
                             GN = Gender.getSelectedItem().toString();
-
 
                             final BloodGroups blood;
                             switch (String.valueOf(BloodType.getSelectedItem())) {
@@ -170,8 +162,8 @@ public class ProfileUpdate extends AppCompatActivity {
                                         databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).child("age").setValue(age);
                                         databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).child("bloodGroup").setValue(blood);
                                         databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).child("gender").setValue(GN);
-                                    }else if(PM == 2)
-                                    databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).child("firstName").setValue(FN);
+                                    } else if (PM == 2)
+                                        databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).child("firstName").setValue(FN);
                                     databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).child("lastName").setValue(LN);
                                     databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).child("phoneNumber").setValue(PN);
                                     databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).child("adress").setValue(AD);
@@ -179,9 +171,7 @@ public class ProfileUpdate extends AppCompatActivity {
                                     databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).child("age").setValue(age);
                                     databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).child("bloodGroup").setValue(blood);
                                     databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).child("gender").setValue(GN);
-
                                 }
-
                             }
                         }
 
@@ -189,26 +179,19 @@ public class ProfileUpdate extends AppCompatActivity {
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
-
-
                     };
 
                     databaseRef.child("Protected member").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(valueEventListener);
-
                     databaseRef.child("Rescue agent").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(valueEventListener);
-
                 }
 
-
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                Toast.makeText(getBaseContext(),"account update succefuly",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                Toast.makeText(getBaseContext(), "account update succefuly", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
-    private void fillBloodTypeSpiner() {
 
+    private void fillBloodTypeSpiner() {
         final List<String> spinnerArray = new ArrayList<String>();
         spinnerArray.add("A+");
         spinnerArray.add("A-");
@@ -220,7 +203,6 @@ public class ProfileUpdate extends AppCompatActivity {
         spinnerArray.add("O-");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArray);
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         BloodType = (Spinner) findViewById(R.id.updateBT);
         BloodType.setAdapter(adapter);

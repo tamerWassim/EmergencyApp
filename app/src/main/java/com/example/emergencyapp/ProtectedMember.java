@@ -6,21 +6,21 @@ public class ProtectedMember {
     String gender;
     String adress;
     String pathologies;
-    String email ;
+    String email;
     String password;
     int phoneNumber;
     int Age;
-    int id ;
+    int id;
     BloodGroups bloodGroup;
 
-    public ProtectedMember( String firstName, String lastName, String gender, String adress, int Age, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup) {
+    public ProtectedMember(String firstName, String lastName, String gender, String adress, int Age, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.Age = Age;
         this.adress = adress;
         this.phoneNumber = phoneNumber;
-        this.email=email;
+        this.email = email;
         this.password = password;
         this.pathologies = pathologies;
         this.bloodGroup = bloodGroup;

@@ -4,8 +4,7 @@ public class RescueAgent extends ProtectedMember {
 
     String wilaya, dayra;
     RescueTypes rescueType;
-  //  boolean disponible;
-    int id ;
+    int id;
 
     public RescueAgent(String firstName, String lastName, String gender, String adress, int Age, int phoneNumber, String email, String password, String pathologies, BloodGroups bloodGroup,
                        String wilaya, String dayra, RescueTypes rescueType) {
@@ -14,7 +13,6 @@ public class RescueAgent extends ProtectedMember {
         this.dayra = dayra;
         this.rescueType = rescueType;
         id = 2;
-
     }
 
     public String getWilaya() {

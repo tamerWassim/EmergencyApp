@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/menu"
     android:backgroundTintMode="add"
-    android:id="@+id/drawer_layout"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -15,9 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/main_toolbar" />
-
+        <include layout="@layout/main_toolbar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,18 +22,16 @@
             android:background="@color/white"
             android:backgroundTintMode="add">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emergency_call"
-                android:layout_marginBottom="20dp">
-
+                app:layout_constraintTop_toBottomOf="@+id/emergency_call">
 
                 <Button
                     android:id="@+id/fireButton"
@@ -44,9 +39,9 @@
                     android:layout_height="100dp"
                     android:layout_marginRight="30dp"
                     android:background="@drawable/suplementaire_button"
-                    android:paddingStart="30dp"
                     android:drawableStart="@drawable/ic_noun_fire"
                     android:gravity="center"
+                    android:paddingStart="30dp"
                     android:textColor="@color/menu"
                     android:textStyle="bold" />
 
@@ -55,9 +50,9 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@drawable/suplementaire_button"
-                    android:paddingStart="20dp"
                     android:drawableStart="@drawable/ic_noun_police_department"
                     android:gravity="center"
+                    android:paddingStart="20dp"
                     android:textColor="@color/menu"
                     android:textStyle="bold" />
 
@@ -67,9 +62,9 @@
                     android:layout_height="100dp"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/suplementaire_button"
-                    android:paddingStart="5dp"
                     android:drawableStart="@drawable/ic_noun_accident_"
                     android:gravity="center"
+                    android:paddingStart="5dp"
                     android:textColor="@color/menu"
                     android:textStyle="bold" />
 
@@ -77,7 +72,6 @@
 
             <Button
                 android:id="@+id/emergency_call"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="200sp"
@@ -93,9 +87,7 @@
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.438"
-                 />
-
+                app:layout_constraintVertical_bias="0.438" />
 
             <View
                 android:id="@+id/view"
@@ -125,8 +117,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.081" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 
     <RelativeLayout
@@ -135,7 +127,8 @@
         android:layout_gravity="start"
         android:background="@android:color/white">
 
-        <include
-            layout="@layout/main_nav_drawer"/>
+        <include layout="@layout/main_nav_drawer" />
+
     </RelativeLayout>
+
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,12 +1,7 @@
 package com.example.emergencyapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,29 +12,26 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.List;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
@@ -61,13 +53,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     RescueAgent rescueAgent;
     Spinner wilayaSpinner, dayraSpinner, rescueTypeSpinner;
 
-    Button sign , backToLogIn;
+    Button sign, backToLogIn;
     CheckBox rescueAgentVelonteer;
     LinearLayout moreInfo;
     ProgressBar progressBar;
     final List<String> spinnerArraywilaya = new ArrayList<String>();
     final List<String> spinnerArraydayra = new ArrayList<String>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,7 +182,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             yearOfbirth.requestFocus();
             return;
         }
-        if (Integer.parseInt(yearOfbirth.getText().toString())<1910) {
+        if (Integer.parseInt(yearOfbirth.getText().toString()) < 1910) {
             yearOfbirth.setError("How Old Are You !!!");
             yearOfbirth.requestFocus();
             return;
@@ -206,7 +197,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             pathologies.requestFocus();
             return;
         }
-
 
 
         final BloodGroups blood;
@@ -238,7 +228,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             default:
                 blood = BloodGroups.NONE;
         }
-        final int age = Calendar.getInstance().get(Calendar.YEAR)  - Integer.parseInt(yearOfbirth.getText()+"") ;
+        final int age = Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(yearOfbirth.getText() + "");
         progressBar.setVisibility(View.VISIBLE);
         if (!rescueAgentVelonteer.isChecked()) {
             mAuth.createUserWithEmailAndPassword(Email.getText() + "", password.getText() + "")
@@ -251,13 +241,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                         lastName.getText() + "",
                                         genderSpinner.getSelectedItem() + "",
                                         adress.getText() + "",
-                                        Integer.parseInt(age+"") ,
+                                        Integer.parseInt(age + ""),
                                         Integer.parseInt(phoneNumber.getText() + ""),
                                         Email.getText() + "",
                                         password.getText() + "",
                                         pathologies.getText() + "",
                                         blood);
-                               // Toast.makeText(getBaseContext(), protectedMember.toString(), Toast.LENGTH_SHORT).show();
 
                                 databaseRef.child("Protected member")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -325,7 +314,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                         lastName.getText() + "",
                                         genderSpinner.getSelectedItem() + "",
                                         adress.getText() + "",
-                                        Integer.parseInt(age+""),
+                                        Integer.parseInt(age + ""),
                                         Integer.parseInt(phoneNumber.getText() + ""),
                                         Email.getText() + "",
                                         password.getText() + "",
@@ -334,11 +323,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                                         wilayaSpinner.getSelectedItem() + "",
                                         dayraSpinner.getSelectedItem() + "",
                                         rescueType);
-                              //  Toast.makeText(getBaseContext(), rescueAgent.toString(), Toast.LENGTH_LONG).show();
 
-                                databaseRef.child("Rescue agent")
-                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                        .setValue(rescueAgent).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                databaseRef.child("Rescue agent").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(rescueAgent).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         progressBar.setVisibility(View.GONE);
@@ -371,9 +357,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-
     private void fillBloodGroupSpiner() {
-
         final List<String> spinnerArray = new ArrayList<String>();
         spinnerArray.add("A+");
         spinnerArray.add("A-");
@@ -392,7 +376,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void fillWilaya() {
-
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -402,7 +385,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArraywilaya);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 wilayaSpinner.setAdapter(adapter);
-
             }
 
             @Override
@@ -411,16 +393,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             }
         };
 
-       databaseRef.child("wilaya").addValueEventListener(valueEventListener);
-
-
-
-
-
+        databaseRef.child("wilaya").addValueEventListener(valueEventListener);
     }
 
     private void fillDayra(String mWilaya) {
-
         databaseRef.child("wilaya").child(mWilaya).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -428,7 +404,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     spinnerArraydayra.add(ds.getKey());
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_spinner_item, spinnerArraydayra);
-
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 dayraSpinner.setAdapter(adapter);
             }
@@ -440,7 +415,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         });
     }
 
-    public  void fillRescueTypes() {
+    public void fillRescueTypes() {
         List<String> spinnerArray = new ArrayList<String>();
 
         spinnerArray.add("Volunteer");
@@ -463,11 +438,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             case R.id.sign:
                 createNewMember();
                 break;
-            case R.id.back_to_login :
-                startActivity(new Intent(getApplicationContext(),Login.class));
+            case R.id.back_to_login:
+                startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
         }
-
     }
-
 }

@@ -1,123 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="20dp"
     android:layout_marginTop="5dp"
-    app:layout_goneMarginLeft="5dp"
-    app:layout_goneMarginRight="5dp"
-    android:orientation="vertical"
-    android:gravity="center"
     android:layout_marginRight="20dp"
+    android:layout_marginBottom="5dp"
     android:background="@drawable/text_view_theme"
-    android:layout_marginLeft="20dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wilaya :"
-        android:layout_marginTop="20dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/menu"
-        android:layout_marginEnd="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_gravity="start"/>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:gravity="center"
-    android:layout_marginRight="20dp"
-    android:layout_marginLeft="20dp">
+    android:orientation="vertical"
+    app:layout_goneMarginLeft="5dp"
+    app:layout_goneMarginRight="5dp">
 
-
-
-    <Spinner
-        android:id="@+id/wilaya_call"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/text_view_theme"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp">
-    </Spinner>
-</LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dayra :"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/menu"
-        android:layout_marginEnd="40dp"
+        android:layout_gravity="start"
         android:layout_marginStart="40dp"
-        android:layout_gravity="start"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:text="Wilaya :"
+        android:textColor="@color/menu"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <Spinner
-        android:id="@+id/dayra_call"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/text_view_theme"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        >
-    </Spinner>
+
+        <Spinner
+            android:id="@+id/wilaya_call"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/text_view_theme" />
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rescue Type :"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/menu"
-        android:layout_marginEnd="40dp"
+        android:layout_gravity="start"
         android:layout_marginStart="40dp"
-        android:layout_gravity="start"/>
+        android:layout_marginEnd="40dp"
+        android:text="Dayra :"
+        android:textColor="@color/menu"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/dayra_call"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/text_view_theme" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="Rescue Type :"
+        android:textColor="@color/menu"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
-
-    <Spinner
-        android:id="@+id/emergency_type_call"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:entries="@array/emergency_type_entries"
-        android:background="@drawable/text_view_theme"
         android:gravity="center"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        >
-    </Spinner>
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/emergency_type_call"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/text_view_theme"
+            android:entries="@array/emergency_type_entries"
+            android:gravity="center" />
+
     </LinearLayout>
 
     <Button
         android:id="@+id/confirm_call"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/text_view_theme"
         android:paddingStart="50dp"
         android:paddingEnd="50dp"
         android:text="Confirm"
-        android:background="@drawable/text_view_theme"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
         android:textColor="#FF0000"
-        android:textSize="24sp" />
-
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

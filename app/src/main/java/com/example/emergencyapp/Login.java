@@ -1,8 +1,5 @@
 package com.example.emergencyapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -10,15 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,15 +41,30 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         progressBar.setVisibility(View.GONE);
 
         mAuth = FirebaseAuth.getInstance();
-
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mAuth.getCurrentUser() != null) {
+            finish();
+            startActivity(new Intent(Login.this, MainActivity.class));
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.sign_up:
+                startActivity(new Intent(Login.this, SignUp.class));
+                break;
+            case R.id.login:
+                userLogin();
+                break;
+        }
+    }
 
     private void userLogin() {
-        String uEmail = userEmail.getText().toString().trim();
-        String uPassword = userPassword.getText().toString().trim();
-
-
         if (userEmail.getText().toString().trim().isEmpty()) {
             userEmail.setError("Email is required");
             userEmail.requestFocus();
@@ -81,7 +93,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         mAuth.signInWithEmailAndPassword(userEmail.getText().toString().trim(), userPassword.getText().toString().trim()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
                 if (task.isSuccessful()) {
                     finish();
                     Intent intent = new Intent(Login.this, MainActivity.class);
@@ -93,33 +104,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                 }
                 progressBar.setVisibility(View.GONE);
-
             }
 
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (mAuth.getCurrentUser() != null) {
-            finish();
-            startActivity(new Intent(Login.this, MainActivity.class));
-        }
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.sign_up:
-
-                startActivity(new Intent(Login.this, SignUp.class));
-
-                break;
-
-            case R.id.login:
-                userLogin();
-                break;
-        }
     }
 }

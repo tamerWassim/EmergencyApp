@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MapFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MapFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,9 +46,7 @@
                 android:textSize="18sp"
                 android:textStyle="normal" />
 
-
         </LinearLayout>
-
 
         <View
             android:layout_width="match_parent"
@@ -67,16 +65,12 @@
             tools:context=".MapFragment"
             tools:layout="@layout/map_location" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@color/menu" />
-
-
-
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/menu" />
 
     </LinearLayout>
 

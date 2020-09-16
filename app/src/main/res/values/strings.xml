@@ -10,8 +10,7 @@
     <string name="input_error_phone_invalid">enter a valid phone number</string>
     <string name="registration_success">Registered Successfully</string>
     <string name="input_error_email_invalid">enter a valid email</string>
-    <string name="input_adress_error">enter a correct adress</string>
-
+    <string name="input_adress_error">enter a correct address</string>
 
     <string-array name="Gender">
         <item>Male</item>
@@ -25,7 +24,5 @@
         <item>Robory</item>
         <item>Danger Threat</item>
         <item>Other</item>
-
     </string-array>
-
 </resources>
